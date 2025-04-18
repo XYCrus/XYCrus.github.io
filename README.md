@@ -1,35 +1,26 @@
-<!-- Hero Section -->
+<!-- Personal splash 👋 -->
 <p align="center">
-  <img src="assets/ProfileImg.jpg" alt="Sean Xie" width="200"/>
+  <img src="./pic/profile.jpg" alt="Sean Xie" width="180">
 </p>
 
-<h1 align="center">Xiangyu (Sean) Xie</h1>
+<h1 align="center">Hey, I'm Sean ✨</h1>
 
 <p align="center">
-  <em>M.Eng. student in Operations Research and Information Engineering at Cornell University</em>
-</p>
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/seanxie2024/">LinkedIn</a> •
-  <a href="https://github.com/XYCrus">GitHub</a>
+  Shanghai‑born • Cornell ORIE M.Eng. • Data whisperer<br/>
+  <em>“A wanderer who thinks sleep is for the dead.”</em>
 </p>
 
 ---
 
-## 👋 About Me
+## TL;DR
 
-Hi! I’m **Sean Xie**, a data enthusiast with hands‑on experience in **machine learning**, **data engineering**, and **analytics consulting**. I thrive at the intersection of theory and real‑world impact—whether that’s building a 196‑million‑parameter language model or designing data pipelines that empower decision‑makers. When I’m not coding, you’ll find me playing basketball or tracking the latest sports analytics papers.
-
----
-
-## 🏫 Education
-
-| Degree | Institution | Dates |
-| --- | --- | --- |
-| **M.Eng. Operations Research & Information Engineering**  | Cornell University | *Expected Dec 2025* |
-| **B.A. Computer & Data Science** | New York University | *Sep 2020 – May 2024* |
-
-**Relevant Coursework:** Simulation & Modeling • Markov Chains • Time Series Analysis • Data Mining • Optimization • Deep Learning • Causal Inference • Big Data Processing
+```text
+📍 Currently      Ithaca / NYC
+🎓 Day Job        Turning math into decisions @ Cornell ORIE
+🏗️ Side Quests    LLMs • ML Ops • Data Viz
+🎮 Hobby Grind    Gaming • Skiing • Working out
+🌊 Happy Place    30 m below sea level, chasing turtles
+```
 
 ---
 
@@ -41,47 +32,68 @@ Hi! I’m **Sean Xie**, a data enthusiast with hands‑on experience in **machin
 
 ---
 
-## 💼 Experience
+## 🔬 Project Spotlight
 
-### Data Management Intern — *JM Family Enterprises, Inc.*  
-*Deerfield Beach, FL | Jun 2023 – Aug 2023*
+### **OnlySportsLM — tiny model, big game IQ**
 
-*  Built Azure Data Factory pipelines that aligned with new physical data models.
-*  Created **7+** external tables & views in Azure Synapse (T‑SQL & Git), transforming raw JSON/Parquet into relational STAR‑schema tables.
-*  Conducted QA/unit testing that accelerated the team’s cloud migration timeline.
+Ever wondered if a sub‑1 B model could talk sports better than the giants? We gave it a try.
 
-### Data Analyst Co‑op — *J&J HiSoftware LLC*  
-*Atlanta, GA | Sep 2022 – Jan 2023*
+* **Dataset →** scraped & filtered **600 B tokens** of play‑by‑play, news, and forum banter.
+* **Model →** custom **196 M‑parameter RWKV‑v6**, 20 layers × 640 dims (deep‑and‑thin FTW).
+* **Training →** half the dataset on 8 H100s (budget ≈ one AAA game title 🙃).
+* **Result →** beats previous 135 M/360 M baselines by **+37.6 % accuracy** on our open benchmark, nipping at the heels of 1 B+ models.
 
-*  Automated ETL workflows in Python, boosting processing efficiency by **50%**.
-*  Designed an RNN with **LPKT** architecture to predict student assessment outcomes.
-*  Collaborated with product teams to ship the model into production servers.
+📄 **Paper:** [NeurIPS 2024 ENLSP Workshop · Paper 21](https://neurips2024-enlsp.github.io/papers/paper_21.pdf)
 
-### Data Analyst Intern — *VIA Technologies, Inc.*  
-*Fremont, CA | Jun 2022 – Aug 2022*
-
-*  Developed an NLP‑driven keyword pipeline that produced **20+** SEM reports.
-*  Modeled client conversion probabilities with logistic regression to guide targeting.
-*  Built Tableau dashboards that informed driver‑safety GTM strategies.
+*(Ping me if you want to tinker with checkpoints or the data pipeline.)*
 
 ---
 
-## 🧪 Projects
+## 🐠 Dive Gallery
 
-| Project | Highlights | Stack |
-| --- | --- | --- |
-| **OnlySportsLM** *(May 2024 – Sep 2024)* | 196M‑parameter RWKV sports language model with **+37.6%** accuracy; presented at ENLSP Workshop @ NeurIPS 2024 | PyTorch, PEFT, CUDA |
-| **Nutritional Labels for Automated Decision Systems** *(Mar 2022 – May 2022)* | Built fairness & interpretability toolkit (AIF360 + LIME) for loan approval ADS | Python, AIF360, LIME |
+<div align="center" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+
+<figure>
+  <img src="assets/cenote.jpg" width="300" alt="Cenote beams"/>
+  <figcaption><strong>Cenote Pit, Mexico (2023)</strong><br/>Sunbeams slicing a hydrogen‑sulfide cloud</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/manta.jpg" width="300" alt="Manta ray"/>
+  <figcaption><strong>Koh Bon, Thailand (2022)</strong><br/>First manta fly‑over</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/turtle.jpg" width="300" alt="Turtle"/>
+  <figcaption><strong>Apo Island, Philippines (2021)</strong><br/>Turtle traffic jam</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/wreck.jpg" width="300" alt="Wreck"/>
+  <figcaption><strong>??? (Up next)</strong><br/>Placeholder for my next liveaboard</figcaption>
+</figure>
+
+</div>
+
+*(Swap `assets/*.jpg` for your own shots—captions live in the `<figcaption>` tags.)*
+
+---
+
+## 🎮 Gamer Corner 
+
+* **Platforms:** PS5 • Switch • PC  
+* **Genre comfort food:** Souls‑likes, bullet‑hell, roguelikes  
+* **Current obsession:** Dropping into *HELLDIVERS 2* lobbies yelling *“For Super Earth!”* 🤘 
 
 ---
 
 ## 📬 Get in Touch
 
 * 📧 **Email:** [seanxie249@gmail.com](mailto:seanxie249@gmail.com)
-* 💼 **LinkedIn:** [linkedin.com/in/your‑linkedin‑handle](https://www.linkedin.com/in/your‑linkedin‑handle)
-* 🛠️ **GitHub:** [github.com/your‑github‑handle](https://github.com/your‑github‑handle)
+* 💼 **LinkedIn:** [linkedin.com/in/seanxie2024/](https://www.linkedin.com/in/seanxie2024/)
+* 🛠️ **GitHub:** [github.com/XYCrus](https://github.com/XYCrus)
 
-Feel free to reach out for collaboration, research opportunities, or just to talk about the intersection of sports and AI! 🌟
+Feel free to reach out for collaboration, research opportunities, or just to talk about AI! 🌟
 
 ---
 
