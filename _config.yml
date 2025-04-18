@@ -1,0 +1,34 @@
+title: "Xiangyu (Sean) Xie"
+tagline: "M.Eng. ORIE @ Cornell"
+url: "https://XYCrus.github.io"      # ← Change to your GitHub Pages URL
+baseurl: ""                             # Blank = root directory
+
+# 🎨 Theme
+remote_theme: "mmistakes/minimal-mistakes@4.27.4"  # Popular, feature‑rich Jekyll theme
+
+# 🔌 Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-include-cache
+
+# 👤 Author profile (appears in theme footer/sidebar)
+author:
+  name: "Xiangyu (Sean) Xie"
+  avatar: "/assets/profile.jpg"         # Put your headshot here
+  bio: "Cornell M.Eng. candidate • Machine Learning, Data Engineering, Data Analytics"
+
+# 🌐 Social links (used by theme helpers)
+social:
+  email: "seanxie249@gmail.com"
+  linkedin: "your-linkedin-handle"
+  github: "your-github-handle"
+  twitter: "your-twitter-handle"
+
+# 📈 Analytics (optional)
+google_analytics: ""                     # e.g. G-XXXXXXXXXX
+
+# 📝 Markdown & syntax highlight settings
+markdown: kramdown
+highlighter: rouge

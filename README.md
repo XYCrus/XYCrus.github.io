@@ -1,18 +1,17 @@
 <!-- Hero Section -->
 <p align="center">
-  <img src="assets/profile.jpg" alt="Sean Xie" width="200"/>
+  <img src="assets/ProfileImg.jpg" alt="Sean Xie" width="200"/>
 </p>
 
 <h1 align="center">Xiangyu (Sean) Xie</h1>
 
 <p align="center">
-  <em>Data Scientist & M.Eng. Candidate in Operations Research and Information Engineering at Cornell University</em>
+  <em>M.Eng. student in Operations Research and Information Engineering at Cornell University</em>
 </p>
 
 <p align="center">
-  <a href="mailto:seanxie249@gmail.com">Email</a> •
-  <a href="https://www.linkedin.com/in/your‑linkedin‑handle">LinkedIn</a> •
-  <a href="https://github.com/your‑github‑handle">GitHub</a>
+  <a href="https://www.linkedin.com/in/seanxie2024/">LinkedIn</a> •
+  <a href="https://github.com/XYCrus">GitHub</a>
 </p>
 
 ---
