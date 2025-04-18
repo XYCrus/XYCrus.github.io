@@ -19,7 +19,7 @@
 🎓 Day Job        Turning math into decisions @ Cornell ORIE
 🏗️ Side Quests    LLMs • ML Ops • Data Viz
 🎮 Hobby Grind    Gaming • Skiing • Working out
-🌊 Happy Place    30 m below sea level, chasing turtles
+🌊 Happy Place    120 ft below sea level, chasing turtles
 ```
 
 ---

@@ -1,34 +1,36 @@
+# GitHub Pages configuration for Xiangyu (Sean) Xie
 title: "Xiangyu (Sean) Xie"
-tagline: "M.Eng. ORIE @ Cornell"
-url: "https://XYCrus.github.io"      # ← Change to your GitHub Pages URL
-baseurl: ""                             # Blank = root directory
+tagline: "Data Scientist • M.Eng. ORIE @ Cornell"
 
-# 🎨 Theme
-remote_theme: "mmistakes/minimal-mistakes@4.27.4"  # Popular, feature‑rich Jekyll theme
+url: "https://xycrus.github.io"   # change if the repo URL differs
+baseurl: ""                       # keep empty for user/organization site
 
-# 🔌 Plugins
+# ────── Theme ─────────────────────────────────────────────────────────────────
+# Remove the version pin—GitHub Pages will pull the latest compatible release
+remote_theme: "mmistakes/minimal-mistakes"
+
+# Optional: pick a built‑in Minimal Mistakes skin (light ≈ “default”, “air”, “dark”)
+minimal_mistakes_skin: "air"
+
+# ────── Plugins ───────────────────────────────────────────────────────────────
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-include-cache
+  - jekyll-include-cache    # speeds up builds
 
-# 👤 Author profile (appears in theme footer/sidebar)
+# ────── Author profile ────────────────────────────────────────────────────────
 author:
   name: "Xiangyu (Sean) Xie"
-  avatar: "/assets/profile.jpg"         # Put your headshot here
-  bio: "Cornell M.Eng. candidate • Machine Learning, Data Engineering, Data Analytics"
+  avatar: "/profile.jpg"
+  bio: "Cornell M.Eng. candidate · Machine Learning, Data Engineering, Sports Analytics"
 
-# 🌐 Social links (used by theme helpers)
+# ────── Social links ─────────────────────────────────────────────────────────
 social:
   email: "seanxie249@gmail.com"
-  linkedin: "your-linkedin-handle"
-  github: "your-github-handle"
-  twitter: "your-twitter-handle"
+  linkedin: "seanxie2024"
+  github: "XYCrus"
 
-# 📈 Analytics (optional)
-google_analytics: ""                     # e.g. G-XXXXXXXXXX
-
-# 📝 Markdown & syntax highlight settings
+# ────── Markdown & syntax highlight ───────────────────────────────────────────
 markdown: kramdown
 highlighter: rouge
