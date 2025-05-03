@@ -58,42 +58,52 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
   /* ---------- Travel Gallery ---------- */
   .travel-grid {
     display: grid;
-    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr); /* 2 equal-ish columns */
-    grid-auto-rows: 200px;      /* every “row” is 200 px tall */
+    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr); /* 2 columns */
     gap: 1rem;
+    /* ❶ let rows size themselves to content (image + caption) */
+    grid-auto-rows: auto;
   }
+
   .travel-grid figure {
     margin: 0;
     text-align: center;
-    display: flex;              /* lets caption sit under image neatly */
-    flex-direction: column;
   }
+
+  /* ❷ left‑column images get a fixed height so rows stay even */
   .travel-grid img {
     width: 100%;
-    height: 100%;               /* fill the assigned grid‑row height(s) */
-    object-fit: cover;          /* crop overflow, no distortion */
+    height: 200px;              /* tweak if you want taller/thinner tiles */
+    object-fit: cover;
     border-radius: 6px;
   }
+
+  /* ❸ beam shot spans 3 of those auto‑height rows */
+  .beam {
+    grid-row: span 3;
+    display: flex;              /* keeps caption under the tall image */
+    flex-direction: column;
+  }
+  .beam img {
+    flex: 1 0 auto;             /* fill all vertical space it gets */
+    height: auto;               /* override the 200 px rule above */
+  }
+
   .travel-grid figcaption {
     margin-top: 0.4rem;
     font-size: 0.85rem;
     line-height: 1.25;
   }
-  /* Beam photo spans 3 rows = height of the three left‑hand shots combined */
-  .beam {
-    grid-row: span 3;
-  }
-  /* Mobile fallback: collapse to a single column */
+
+  /* ❹ Mobile: fall back to a single column */
   @media (max-width: 700px) {
     .travel-grid {
       grid-template-columns: 1fr;
-      grid-auto-rows: auto;
     }
     .beam {
-      grid-row: span 1;
+      grid-row: span 1;         /* no spanning needed in one column */
     }
-    .travel-grid img {
-      height: 200px;            /* keep reasonable height on mobile */
+    .beam img {
+      height: 200px;            /* keep reasonable height on phones */
     }
   }
 </style>
@@ -106,7 +116,7 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
     <figcaption><strong>Phuket, Thailand</strong><br/>Yellow snappers swirling in the blue</figcaption>
   </figure>
 
-  <!-- Rows 1‑3 – right (spans 3 rows) -->
+  <!-- Rows 1‑3 – right -->
   <figure class="beam">
     <img src="./pic/cenote_beam.png" alt="Cenote Light Beam">
     <figcaption><strong>Cenote Siete Bocas, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
@@ -125,6 +135,7 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
   </figure>
 
 </div>
+
 
 
 
