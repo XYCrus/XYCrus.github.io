@@ -40,7 +40,7 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
 
 * **Dataset →** scraped & filtered **600 B tokens** of play‑by‑play, news, and forum banter.
 * **Model →** custom **196 M‑parameter RWKV‑v6**, 20 layers × 640 dims (deep‑and‑thin FTW).
-* **Training →** half the dataset on 8 H100s (budget ≈ one AAA game title 🙃).
+* **Training →** half the dataset on 8 H100s.
 * **Result →** beats previous 135 M/360 M baselines by **+37.6 % accuracy** on our open benchmark, nipping at the heels of 1 B+ models.
 
 📄 **Paper:** [NeurIPS 2024 ENLSP Workshop · Paper 21](https://neurips2024-enlsp.github.io/papers/paper_21.pdf)
@@ -52,10 +52,55 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
 
 ## 🌍 Travel Gallery
 
-|                                                                                                                               |                                                                                                                                |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| ![School of Fish](./pic/fish_school.jpg) **Phuket, Thailand**<br>Yellow snappers swirling in the blue | ![Sunrise over Mountains](./pic/mountain_dawn.png) **Tibetan Plateau, China**<br>First light painting the peaks |
-| ![Milky Way Desert](./pic/desert_stars.jpg) **Joshua Tree, USA**<br>Milky Way shimmering above the yuccas      | ![Cenote Light Beam](./pic/cenote_beam.png) **Cenote Siete Bocas, Mexico**<br>Sunbeams piercing the abyss               |
+<style>
+  /* ---------- Travel Gallery ---------- */
+  .travel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+  }
+  .travel-grid figure {
+    margin: 0;
+    text-align: center;
+  }
+  .travel-grid img {
+    width: 100%;
+    height: 200px;          /* uniform “viewport” height */
+    object-fit: cover;      /* crops overflow without distortion */
+    border-radius: 6px;     /* optional nicety */
+  }
+  .travel-grid figcaption {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+</style>
+
+<div class="travel-grid">
+
+  <figure>
+    <img src="./pic/fish_school.jpg" alt="School of Fish">
+    <figcaption><strong>Phuket, Thailand</strong><br/>Yellow snappers swirling in the blue</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./pic/mountain_dawn.png" alt="Sunrise over Mountains">
+    <figcaption><strong>Tibetan Plateau, China</strong><br/>First light painting the peaks</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./pic/desert_stars.jpg" alt="Milky Way Desert">
+    <figcaption><strong>Joshua Tree, USA</strong><br/>Milky Way shimmering above the yuccas</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./pic/cenote_beam.png" alt="Cenote Light Beam">
+    <figcaption><strong>Cenote Siete Bocas, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
+  </figure>
+
+</div>
+
 
 
 ---
