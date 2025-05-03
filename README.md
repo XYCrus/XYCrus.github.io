@@ -7,6 +7,7 @@
 # Hey, I'm Sean ✨
 
 Shanghai‑born • Cornell ORIE M.Eng. • Data whisperer
+
 *A wanderer who thinks sleep is for the dead.*
 
 ---
@@ -44,6 +45,7 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
 * **Result →** beats previous 135 M/360 M baselines by **+37.6 % accuracy** on our open benchmark, nipping at the heels of 1 B+ models.
 
 📄 **Paper:** [NeurIPS 2024 ENLSP Workshop · Paper 21](https://neurips2024-enlsp.github.io/papers/paper_21.pdf)
+
 💻 **Code:** [GitHub Repo](https://github.com/chrischenhub/OnlySportsLM)
 
 *Ping me if you want to tinker with checkpoints or the data pipeline.*
@@ -56,47 +58,70 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
   /* ---------- Travel Gallery ---------- */
   .travel-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr); /* 2 equal-ish columns */
+    grid-auto-rows: 200px;      /* every “row” is 200 px tall */
     gap: 1rem;
-    justify-items: center;
   }
   .travel-grid figure {
     margin: 0;
     text-align: center;
+    display: flex;              /* lets caption sit under image neatly */
+    flex-direction: column;
   }
   .travel-grid img {
     width: 100%;
-    height: 200px;          /* uniform “viewport” height */
-    object-fit: cover;      /* crops overflow without distortion */
-    border-radius: 6px;     /* optional nicety */
+    height: 100%;               /* fill the assigned grid‑row height(s) */
+    object-fit: cover;          /* crop overflow, no distortion */
+    border-radius: 6px;
   }
   .travel-grid figcaption {
     margin-top: 0.4rem;
     font-size: 0.85rem;
     line-height: 1.25;
   }
+  /* Beam photo spans 3 rows = height of the three left‑hand shots combined */
+  .beam {
+    grid-row: span 3;
+  }
+  /* Mobile fallback: collapse to a single column */
+  @media (max-width: 700px) {
+    .travel-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: auto;
+    }
+    .beam {
+      grid-row: span 1;
+    }
+    .travel-grid img {
+      height: 200px;            /* keep reasonable height on mobile */
+    }
+  }
 </style>
 
 <div class="travel-grid">
 
+  <!-- Row 1 – left -->
   <figure>
     <img src="./pic/fish_school.jpg" alt="School of Fish">
     <figcaption><strong>Phuket, Thailand</strong><br/>Yellow snappers swirling in the blue</figcaption>
   </figure>
 
+  <!-- Rows 1‑3 – right (spans 3 rows) -->
+  <figure class="beam">
+    <img src="./pic/cenote_beam.png" alt="Cenote Light Beam">
+    <figcaption><strong>Cenote Siete Bocas, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
+  </figure>
+
+  <!-- Row 2 – left -->
   <figure>
     <img src="./pic/mountain_dawn.png" alt="Sunrise over Mountains">
     <figcaption><strong>Tibetan Plateau, China</strong><br/>First light painting the peaks</figcaption>
   </figure>
 
+  <!-- Row 3 – left -->
   <figure>
     <img src="./pic/desert_stars.jpg" alt="Milky Way Desert">
     <figcaption><strong>Joshua Tree, USA</strong><br/>Milky Way shimmering above the yuccas</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./pic/cenote_beam.png" alt="Cenote Light Beam">
-    <figcaption><strong>Cenote Siete Bocas, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
   </figure>
 
 </div>
