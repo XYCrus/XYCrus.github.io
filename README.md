@@ -29,17 +29,6 @@ Shanghai‑born • Cornell ORIE M.Eng. • Data whisperer
 | ----------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------- |
 | Python (PyTorch, TensorFlow, Scikit‑Learn) • SQL • R • Java | Azure (Synapse, ADLS2, SSMS) • Hadoop (HDFS, Hive, MapReduce) | Power BI • Tableau • Excel (PivotTables) |
 
-```text
-Python (Scikit‑Learn, PyTorch, Tensorflow)
-SQL
-Power BI
-Tableau
-R (data.table, dplyr, ggplot2)
-Excel (PivotTable)
-Hadoop (HDFS, Hive, MapReduce)
-Azure (Synapse Analytics, ADLS2, SSMS)
-Java
-```
 
 ---
 
@@ -65,8 +54,8 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
 
 |                                                                                                                               |                                                                                                                                |
 | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| ![School of Fish](./pic/fish_school.jpg) **Phuket, Thailand**<br>Yellow snappers swirling in the blue | ![Sunrise over Mountains](./pic/mountain_dawn.jpg) **Tibetan Plateau, China (2023)**<br>First light painting the peaks |
-| ![Milky Way Desert](./pic/desert_stars.jpg) **Joshua Tree, USA**<br>Milky Way shimmering above the yuccas      | ![Cenote Light Beam](./pic/cenote_beam.jpg) **Cenote Pit, Mexico (2023)**<br>Sunbeams piercing the abyss               |
+| ![School of Fish](./pic/fish_school.jpg) **Phuket, Thailand**<br>Yellow snappers swirling in the blue | ![Sunrise over Mountains](./pic/mountain_dawn.png) **Tibetan Plateau, China**<br>First light painting the peaks |
+| ![Milky Way Desert](./pic/desert_stars.jpg) **Joshua Tree, USA**<br>Milky Way shimmering above the yuccas      | ![Cenote Light Beam](./pic/cenote_beam.png) **Cenote Siete Bocas, Mexico**<br>Sunbeams piercing the abyss               |
 
 
 ---
