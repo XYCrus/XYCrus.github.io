@@ -1,14 +1,16 @@
 <!-- Personal splash 👋 -->
+<div align="center">
 
-<p align="center">
   <img src="./pic/profile.jpg" alt="Sean Xie" width="180">
-</p>
 
-# Hey, I'm Sean ✨
+  <h1>Hey, I'm Sean ✨</h1>
 
-Shanghai‑born • Cornell ORIE M.Eng. • Data whisperer
+  <p>Shanghai‑born • Cornell ORIE M.Eng. • Data whisperer</p>
 
-*A wanderer who thinks sleep is for the dead.*
+  <p><em>A wanderer who thinks sleep is for the dead.</em></p>
+
+</div>
+
 
 ---
 
