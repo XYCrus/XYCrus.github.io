@@ -60,9 +60,8 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
   /* ---------- Travel Gallery ---------- */
   .travel-grid {
     display: grid;
-    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr); /* 2 columns */
+    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
     gap: 1rem;
-    /* ❶ let rows size themselves to content (image + caption) */
     grid-auto-rows: auto;
   }
 
@@ -71,23 +70,21 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
     text-align: center;
   }
 
-  /* ❷ left‑column images get a fixed height so rows stay even */
   .travel-grid img {
     width: 100%;
-    height: 200px;              /* tweak if you want taller/thinner tiles */
+    height: 200px;             
     object-fit: cover;
     border-radius: 6px;
   }
 
-  /* ❸ beam shot spans 3 of those auto‑height rows */
   .beam {
     grid-row: span 3;
-    display: flex;              /* keeps caption under the tall image */
+    display: flex;           
     flex-direction: column;
   }
   .beam img {
-    flex: 1 0 auto;             /* fill all vertical space it gets */
-    height: auto;               /* override the 200 px rule above */
+    flex: 1 0 auto;         
+    height: auto;           
   }
 
   .travel-grid figcaption {
@@ -96,41 +93,36 @@ Ever wondered if a sub‑1 B model could talk sports better than the giants? W
     line-height: 1.25;
   }
 
-  /* ❹ Mobile: fall back to a single column */
   @media (max-width: 700px) {
     .travel-grid {
       grid-template-columns: 1fr;
     }
     .beam {
-      grid-row: span 1;         /* no spanning needed in one column */
+      grid-row: span 1;     
     }
     .beam img {
-      height: 200px;            /* keep reasonable height on phones */
+      height: 200px;            
     }
   }
 </style>
 
 <div class="travel-grid">
 
-  <!-- Row 1 – left -->
   <figure>
     <img src="./pic/fish_school.jpg" alt="School of Fish">
     <figcaption><strong>Phuket, Thailand</strong><br/>Yellow snappers swirling in the blue</figcaption>
   </figure>
 
-  <!-- Rows 1‑3 – right -->
   <figure class="beam">
     <img src="./pic/cenote_beam.png" alt="Cenote Light Beam">
-    <figcaption><strong>Cenote Siete Bocas, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
+    <figcaption><strong>Cenote Maravilla, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
   </figure>
 
-  <!-- Row 2 – left -->
   <figure>
     <img src="./pic/mountain_dawn.png" alt="Sunrise over Mountains">
     <figcaption><strong>Tibetan Plateau, China</strong><br/>First light painting the peaks</figcaption>
   </figure>
 
-  <!-- Row 3 – left -->
   <figure>
     <img src="./pic/desert_stars.jpg" alt="Milky Way Desert">
     <figcaption><strong>Joshua Tree, USA</strong><br/>Milky Way shimmering above the yuccas</figcaption>
