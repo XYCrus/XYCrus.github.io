@@ -10,50 +10,6 @@ header:
   caption: "Diving deep into innovation"
 intro: 
   - excerpt: "Welcome to my digital showcase—a collection of projects where cutting-edge AI meets real-world impact. From language models that understand sports better than seasoned analysts to data pipelines that process billions of tokens, each project represents a step forward in making intelligent systems more efficient, accessible, and powerful."
-feature_row:
-  - image_path: /assets/images/onlysportslm-teaser.jpg
-    alt: "OnlySportsLM"
-    title: "OnlySportsLM"
-    excerpt: "Revolutionary 196M-parameter sports-specialized language model achieving 37.6% accuracy improvement over previous baselines. Published at NeurIPS 2024 ENLSP Workshop."
-    url: "/portfolio/onlysportslm/"
-    btn_label: "Explore Project"
-    btn_class: "btn--primary"
-  - image_path: /assets/images/data-pipeline-teaser.jpg
-    alt: "Scalable Data Pipeline"
-    title: "Billion-Token Data Pipeline"
-    excerpt: "End-to-end data engineering solution processing 600B+ tokens of sports content using Azure Synapse, Hadoop, and custom filtering algorithms."
-    url: "/portfolio/data-pipeline/"
-    btn_label: "View Details"
-    btn_class: "btn--primary"
-  - image_path: /assets/images/sports-analytics-teaser.jpg
-    alt: "Real-time Sports Analytics"
-    title: "Real-time Sports Analytics"
-    excerpt: "Live game analysis system providing tactical insights, win probability calculations, and player performance metrics using advanced ML algorithms."
-    url: "/portfolio/sports-analytics/"
-    btn_label: "See Demo"
-    btn_class: "btn--primary"
-feature_row2:
-  - image_path: /assets/images/ml-optimization-teaser.jpg
-    alt: "ML Model Optimization"
-    title: "Neural Architecture Optimization"
-    excerpt: "Custom RWKV-v6 implementation with novel 'deep-and-thin' architecture design, achieving 5x faster inference while maintaining accuracy."
-    url: "/portfolio/model-optimization/"
-    btn_label: "Technical Details"
-    btn_class: "btn--primary"
-  - image_path: /assets/images/visualization-teaser.jpg
-    alt: "Interactive Visualizations"
-    title: "Advanced Data Visualizations"
-    excerpt: "Interactive dashboards and visualizations using Power BI, Tableau, and D3.js for complex sports statistics and AI model performance metrics."
-    url: "/portfolio/visualizations/"
-    btn_label: "View Gallery"
-    btn_class: "btn--primary"
-  - image_path: /assets/images/research-teaser.jpg
-    alt: "Research Contributions"
-    title: "Research & Publications"
-    excerpt: "Academic contributions to ML conferences, open-source projects, and technical blog posts sharing insights on efficient AI and sports analytics."
-    url: "/portfolio/research/"
-    btn_label: "Read Papers"
-    btn_class: "btn--primary"
 ---
 
 {% include feature_row id="intro" type="center" %}
@@ -63,13 +19,95 @@ feature_row2:
   <p style="font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto;">Each project represents a unique challenge solved through innovative application of machine learning, data engineering, and creative problem-solving.</p>
 </div>
 
-{% include feature_row %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0;">
+  
+  <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 1rem; padding: 2rem; color: white; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); opacity: 0.1; border-radius: 50%; transform: translate(50%, -50%);"></div>
+    <div style="position: relative; z-index: 2;">
+      <div style="background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Featured Project</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #3b82f6;">OnlySportsLM</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.9; line-height: 1.6;">Revolutionary 196M-parameter sports-specialized language model achieving 37.6% accuracy improvement over previous baselines. Published at NeurIPS 2024 ENLSP Workshop.</p>
+      <a href="/portfolio/onlysportslm/" style="background: #3b82f6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <i class="fas fa-rocket"></i>
+        Explore Project
+      </a>
+    </div>
+  </div>
+  
+  <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 1rem; padding: 2rem; color: white; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #8b5cf6, #06d6a0); opacity: 0.1; border-radius: 50%; transform: translate(50%, -50%);"></div>
+    <div style="position: relative; z-index: 2;">
+      <div style="background: linear-gradient(135deg, #8b5cf6, #06d6a0); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Data Engineering</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #8b5cf6;">Billion-Token Data Pipeline</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.9; line-height: 1.6;">End-to-end data engineering solution processing 600B+ tokens of sports content using Azure Synapse, Hadoop, and custom filtering algorithms.</p>
+      <a href="#" style="background: #8b5cf6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <i class="fas fa-database"></i>
+        View Details
+      </a>
+    </div>
+  </div>
+  
+  <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); border-radius: 1rem; padding: 2rem; color: white; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #06d6a0, #10b981); opacity: 0.1; border-radius: 50%; transform: translate(50%, -50%);"></div>
+    <div style="position: relative; z-index: 2;">
+      <div style="background: linear-gradient(135deg, #06d6a0, #10b981); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Real-time Analytics</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #06d6a0;">Real-time Sports Analytics</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.9; line-height: 1.6;">Live game analysis system providing tactical insights, win probability calculations, and player performance metrics using advanced ML algorithms.</p>
+      <a href="#" style="background: #06d6a0; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <i class="fas fa-chart-line"></i>
+        See Demo
+      </a>
+    </div>
+  </div>
+  
+</div>
 
 <div style="text-align: center; margin: 4rem 0 2rem;">
   <h2 style="font-size: 2rem; margin-bottom: 1rem;">Additional Work</h2>
 </div>
 
-{% include feature_row id="feature_row2" %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0;">
+  
+  <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2rem; color: #1e293b; position: relative; overflow: hidden; border: 1px solid #e2e8f0;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #f59e0b, #ef4444); opacity: 0.1; border-radius: 50%; transform: translate(50%, -50%);"></div>
+    <div style="position: relative; z-index: 2;">
+      <div style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Optimization</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #f59e0b;">Neural Architecture Optimization</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.8; line-height: 1.6;">Custom RWKV-v6 implementation with novel 'deep-and-thin' architecture design, achieving 5x faster inference while maintaining accuracy.</p>
+      <a href="#" style="background: #f59e0b; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <i class="fas fa-microchip"></i>
+        Technical Details
+      </a>
+    </div>
+  </div>
+  
+  <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2rem; color: #1e293b; position: relative; overflow: hidden; border: 1px solid #e2e8f0;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); opacity: 0.1; border-radius: 50%; transform: translate(50%, -50%);"></div>
+    <div style="position: relative; z-index: 2;">
+      <div style="background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Visualization</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #8b5cf6;">Advanced Data Visualizations</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.8; line-height: 1.6;">Interactive dashboards and visualizations using Power BI, Tableau, and D3.js for complex sports statistics and AI model performance metrics.</p>
+      <a href="#" style="background: #8b5cf6; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <i class="fas fa-chart-pie"></i>
+        View Gallery
+      </a>
+    </div>
+  </div>
+  
+  <div style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 1rem; padding: 2rem; color: #1e293b; position: relative; overflow: hidden; border: 1px solid #e2e8f0;">
+    <div style="position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, #06d6a0, #10b981); opacity: 0.1; border-radius: 50%; transform: translate(50%, -50%);"></div>
+    <div style="position: relative; z-index: 2;">
+      <div style="background: linear-gradient(135deg, #06d6a0, #10b981); color: white; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Research</div>
+      <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #06d6a0;">Research & Publications</h3>
+      <p style="margin-bottom: 1.5rem; opacity: 0.8; line-height: 1.6;">Academic contributions to ML conferences, open-source projects, and technical blog posts sharing insights on efficient AI and sports analytics.</p>
+      <a href="https://neurips2024-enlsp.github.io/papers/paper_21.pdf" target="_blank" style="background: #06d6a0; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600;">
+        <i class="fas fa-file-pdf"></i>
+        Read Papers
+      </a>
+    </div>
+  </div>
+  
+</div>
 
 <section style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 4rem 2rem; margin: 4rem 0; border-radius: 1rem;">
   <div style="max-width: 800px; margin: 0 auto; text-align: center;">

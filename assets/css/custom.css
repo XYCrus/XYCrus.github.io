@@ -14,6 +14,14 @@
     max-width: none !important;
 }
 
+/* Hide any feed links that might appear */
+a[href*="feed"],
+a[href*="rss"],
+.feed-link,
+.rss-link {
+    display: none !important;
+}
+
 .masthead {
     width: 100% !important;
     max-width: none !important;
@@ -734,12 +742,13 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
     color: white;
-    padding: 2rem;
+    padding: 1rem 1.5rem;
     transform: translateY(20px);
     opacity: 0;
     transition: var(--transition-smooth);
+    box-sizing: border-box;
 }
 
 .travel-item:hover .travel-overlay {
@@ -748,16 +757,28 @@ section {
 }
 
 .travel-item:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .travel-overlay h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .travel-overlay p {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 /* ===== CONTACT CTA ===== */
@@ -941,6 +962,20 @@ article {
     .project-links {
         flex-direction: column;
     }
+    
+    /* Mobile travel gallery adjustments */
+    .travel-overlay {
+        padding: 0.75rem 1rem;
+    }
+    
+    .travel-overlay h3 {
+        font-size: 1rem;
+    }
+    
+    .travel-overlay p {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 1;
+    }
 }
 
 @media (max-width: 480px) {
@@ -958,5 +993,24 @@ article {
     
     .cta-content h2 {
         font-size: 2rem;
+    }
+    
+    /* Very small screen travel gallery */
+    .travel-overlay {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .travel-overlay h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.125rem;
+    }
+    
+    .travel-overlay p {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .travel-gallery {
+        gap: 1rem;
     }
 }
