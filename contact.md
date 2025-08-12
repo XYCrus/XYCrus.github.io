@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: splash
 title: "Let's Connect"
 permalink: /contact/
 header:
@@ -7,7 +7,6 @@ header:
   overlay_filter: "0.5"
   overlay_image: /pic/desert_stars.jpg
   caption: "Under the stars at Joshua Tree - where great ideas are born"
-author_profile: false
 classes: wide
 ---
 

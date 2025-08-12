@@ -1,5 +1,5 @@
 ---
-layout: posts
+layout: splash
 title: "Technical Blog"
 permalink: /blog/
 header:
@@ -7,7 +7,6 @@ header:
   overlay_filter: "0.5"
   overlay_image: /pic/fish_school.jpg
   caption: "Swimming through the ocean of data"
-author_profile: true
 classes: wide
 intro: 
   - excerpt: "Welcome to my technical blog—a space where I share insights, discoveries, and lessons learned from the frontlines of AI and data science. From deep dives into model architectures to practical tips for ML engineering, join me on this journey of continuous learning and innovation."

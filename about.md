@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: splash
 title: "About Sean"
 permalink: /about/
 header:
@@ -7,10 +7,7 @@ header:
   overlay_filter: "0.5"
   overlay_image: /pic/mountain_dawn.png
   caption: "First light on the Tibetan Plateau"
-author_profile: true
-toc: true
-toc_label: "Journey Overview"
-toc_icon: "fas fa-map-marked-alt"
+classes: wide
 ---
 
 # The Story Behind the Code

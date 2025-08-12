@@ -1,9 +1,7 @@
 ---
-layout: collection
+layout: splash
 title: "Portfolio"
 permalink: /portfolio/
-collection: portfolio
-entries_layout: grid
 classes: wide
 header:
   overlay_color: "#000"
