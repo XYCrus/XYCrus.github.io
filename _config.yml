@@ -1,36 +1,117 @@
-# GitHub Pages configuration for Xiangyu (Sean) Xie
-title: "Xiangyu (Sean) Xie"
-tagline: "Data Scientist • M.Eng. ORIE @ Cornell"
+# ✨ Sean Xie's Digital Portfolio
+title: "Sean Xie"
+tagline: "Data Scientist • ML Engineer • Digital Explorer"
+description: "Cornell ORIE M.Eng. | Transforming data into intelligent solutions | Building the future with AI"
 
-url: "https://xycrus.github.io"   # change if the repo URL differs
-baseurl: ""                       # keep empty for user/organization site
+url: "https://xycrus.github.io"
+baseurl: ""
 
-# ────── Theme ─────────────────────────────────────────────────────────────────
-# Remove the version pin—GitHub Pages will pull the latest compatible release
+# ──── Advanced Theme Configuration ────────────────────────────────────────────
 remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "dark" # For that modern, professional look
 
-# Optional: pick a built‑in Minimal Mistakes skin (light ≈ “default”, “air”, “dark”)
-minimal_mistakes_skin: "air"
-
-# ────── Plugins ───────────────────────────────────────────────────────────────
+# ──── Enhanced Plugins ────────────────────────────────────────────────────────
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-include-cache    # speeds up builds
+  - jekyll-include-cache
+  - jekyll-paginate
 
-# ────── Author profile ────────────────────────────────────────────────────────
+# ──── Site Navigation ─────────────────────────────────────────────────────────
+masthead_title: "SEAN XIE"
+navigation:
+  - title: "About"
+    url: /about/
+  - title: "Portfolio" 
+    url: /portfolio/
+  - title: "Blog"
+    url: /blog/
+  - title: "Contact"
+    url: /contact/
+
+# ──── Author Profile ──────────────────────────────────────────────────────────
 author:
   name: "Xiangyu (Sean) Xie"
-  avatar: "/profile.jpg"
-  bio: "Cornell M.Eng. candidate · Machine Learning, Data Engineering, Sports Analytics"
-
-# ────── Social links ─────────────────────────────────────────────────────────
-social:
+  avatar: "/pic/profile.jpg"
+  bio: "🎯 ML Engineer & Data Scientist<br/>🎓 Cornell ORIE M.Eng.<br/>🚀 Building intelligent systems that matter"
+  location: "Ithaca, NY / NYC"
   email: "seanxie249@gmail.com"
-  linkedin: "seanxie2024"
-  github: "XYCrus"
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/XYCrus"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/seanxie2024"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:seanxie249@gmail.com"
 
-# ────── Markdown & syntax highlight ───────────────────────────────────────────
+# ──── Site Footer ─────────────────────────────────────────────────────────────
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/XYCrus"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://linkedin.com/in/seanxie2024"
+
+# ──── Collections ─────────────────────────────────────────────────────────────
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:name/
+
+# ──── Defaults ────────────────────────────────────────────────────────────────
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
+  - scope:
+      path: "_portfolio"
+      type: portfolio
+    values:
+      layout: single
+      author_profile: false
+      share: true
+
+# ──── Advanced Settings ───────────────────────────────────────────────────────
+search: true
+search_full_content: true
+search_provider: "lunr"
+
+# Social sharing
+twitter:
+  username: "seanxie_dev"
+
+# SEO
+social:
+  type: Person
+  name: "Xiangyu (Sean) Xie"
+  links:
+    - "https://linkedin.com/in/seanxie2024"
+    - "https://github.com/XYCrus"
+
+# Analytics (optional)
+# google_analytics: "YOUR_TRACKING_ID"
+
+# ──── Markdown & Syntax Highlighting ─────────────────────────────────────────
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true

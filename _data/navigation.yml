@@ -1,0 +1,47 @@
+# Site navigation links
+
+main:
+  - title: "About"
+    url: /about/
+    description: "My journey, skills, and what drives me"
+  - title: "Portfolio"
+    url: /portfolio/
+    description: "Featured projects and technical work"
+  - title: "Blog"
+    url: /blog/
+    description: "Technical insights and thoughts"
+  - title: "Contact"
+    url: /contact/
+    description: "Let's connect and collaborate"
+
+# Footer navigation
+footer:
+  - title: "Quick Links"
+    children:
+      - title: "Resume"
+        url: /assets/docs/resume.pdf
+      - title: "GitHub"
+        url: https://github.com/XYCrus
+      - title: "LinkedIn"
+        url: https://linkedin.com/in/seanxie2024
+      - title: "Email"
+        url: mailto:seanxie249@gmail.com
+
+# Side navigation for portfolio
+portfolio:
+  - title: "Featured Projects"
+    children:
+      - title: "OnlySportsLM"
+        url: /portfolio/onlysportslm/
+      - title: "Data Pipeline"
+        url: /portfolio/data-pipeline/
+      - title: "Sports Analytics"
+        url: /portfolio/sports-analytics/
+  - title: "Technical Work"
+    children:
+      - title: "Model Optimization"
+        url: /portfolio/model-optimization/
+      - title: "Visualizations"
+        url: /portfolio/visualizations/
+      - title: "Research"
+        url: /portfolio/research/

@@ -1,156 +1,88 @@
-<!-- Personal splash 👋 -->
-<div align="center">
+# Welcome to Sean Xie's Digital Portfolio
 
-  <img src="./pic/profile.jpg" alt="Sean Xie" width="180">
+🚀 **This repository has been completely transformed!** What you're seeing is now a modern, interactive personal website that will make visitors say "wow!"
 
-  <h1>Hey, I'm Sean ✨</h1>
+## 🌟 What's New
 
-  <p>Shanghai‑born • Cornell ORIE M.Eng. • Data whisperer</p>
+This isn't just a simple GitHub README anymore—it's a fully-featured personal website with:
 
-  <p><em>A wanderer who thinks sleep is for the dead.</em></p>
+- **🎨 Modern Design**: Stunning visual effects, animations, and interactive elements
+- **⚡ Performance Optimized**: Lightning-fast loading with efficient code
+- **📱 Mobile Responsive**: Beautiful on every device
+- **🧠 AI-Powered Content**: Showcasing cutting-edge ML projects
+- **🔍 SEO Optimized**: Professional online presence
 
-</div>
+## 🏗️ Architecture
 
+This website is built using:
+- **Jekyll** with **Minimal Mistakes** theme
+- **Custom CSS** with modern animations and effects  
+- **Interactive JavaScript** for engaging user experience
+- **GitHub Pages** for seamless hosting
 
----
+## 📂 Site Structure
 
-## TL;DR
-
-```text
-📍 Currently      Ithaca / NYC
-🎓 Day Job        Turning math into decisions @ Cornell ORIE
-🏗️ Side Quests    LLMs • ML Ops • Data Viz
-🎮 Hobby Grind    Gaming • Skiing • Traveling • Working out
-🌊 Happy Place    120 ft below sea level, chasing turtles
+```
+├── index.html          # Interactive homepage with hero section
+├── about.md            # Personal story and journey
+├── portfolio.md        # Featured projects and work
+├── blog.md             # Technical blog and insights
+├── contact.md          # Professional contact page
+├── _portfolio/         # Individual project pages
+├── _posts/             # Blog articles
+├── assets/
+│   ├── css/custom.css  # Modern styling and animations
+│   └── js/main.js      # Interactive features
+└── pic/                # High-quality images and photos
 ```
 
----
+## 🎯 Key Features
 
-## 💡 Skills
+### Interactive Hero Section
+- **Animated background**: Neural network visualization
+- **Typing animation**: Dynamic role descriptions
+- **Floating statistics**: Real project metrics
+- **Smooth scrolling**: Professional navigation
 
-| Languages & Libraries                                       | Data & Cloud                                                  | Visualization                            |
-| ----------------------------------------------------------- | ------------------------------------------------------------- | ---------------------------------------- |
-| Python (PyTorch, TensorFlow, Scikit‑Learn) • SQL • R • Java | Azure (Synapse, ADLS2, SSMS) • Hadoop (HDFS, Hive, MapReduce) | Power BI • Tableau • Excel (PivotTables) |
+### Project Showcase
+- **OnlySportsLM**: 196M-parameter specialized language model
+- **Technical deep-dives**: Architecture, results, and insights
+- **Open source contributions**: Code and research papers
 
+### Professional Blog
+- **Technical articles**: AI, ML, and data science insights
+- **Project walkthroughs**: Behind-the-scenes development stories
+- **Industry analysis**: Trends and breakthrough research
 
----
+### Contact & Networking
+- **Multiple channels**: Email, LinkedIn, GitHub
+- **Collaboration opportunities**: Research and industry projects
+- **Speaking engagements**: Technical talks and workshops
 
-## 🔬 Project Spotlight
+## 🚀 Visit the Live Site
 
-### **OnlySportsLM — tiny model, big game IQ**
+**[https://xycrus.github.io](https://xycrus.github.io)**
 
-Ever wondered if a sub‑1 B model could talk sports better than the giants? We gave it a try.
+Experience the full interactive website with animations, project showcases, and professional content that demonstrates expertise in AI and data science.
 
-* **Dataset →** scraped & filtered **600 B tokens** of play‑by‑play, news, and forum banter.
-* **Model →** custom **196 M‑parameter RWKV‑v6**, 20 layers × 640 dims (deep‑and‑thin FTW).
-* **Training →** half the dataset on 8 H100s.
-* **Result →** beats previous 135 M/360 M baselines by **+37.6 % accuracy** on our open benchmark, nipping at the heels of 1 B+ models.
+## 💡 Behind the Magic
 
-📄 **Paper:** [NeurIPS 2024 ENLSP Workshop · Paper 21](https://neurips2024-enlsp.github.io/papers/paper_21.pdf)
+This transformation demonstrates the same principles I apply to AI development:
+- **Efficiency**: Maximum impact with optimized resources
+- **User Experience**: Intuitive, engaging, and professional
+- **Innovation**: Creative solutions to complex challenges
+- **Performance**: Fast, reliable, and scalable
 
-💻 **Code:** [GitHub Repo](https://github.com/chrischenhub/OnlySportsLM)
+## 🤝 Get in Touch
 
-*Ping me if you want to tinker with checkpoints or the data pipeline.*
+Ready to collaborate on the next breakthrough in AI and data science?
 
----
-
-## 🌍 Travel Gallery
-
-<style>
-  /* ---------- Travel Gallery ---------- */
-  .travel-grid {
-    display: grid;
-    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
-    gap: 1rem;
-    grid-auto-rows: auto;
-  }
-
-  .travel-grid figure {
-    margin: 0;
-    text-align: center;
-  }
-
-  .travel-grid img {
-    width: 100%;
-    height: 200px;             
-    object-fit: cover;
-    border-radius: 6px;
-  }
-
-  .beam {
-    grid-row: span 3;
-    display: flex;           
-    flex-direction: column;
-  }
-  .beam img {
-    flex: 1 0 auto;         
-    height: auto;           
-  }
-
-  .travel-grid figcaption {
-    margin-top: 0.4rem;
-    font-size: 0.85rem;
-    line-height: 1.25;
-  }
-
-  @media (max-width: 700px) {
-    .travel-grid {
-      grid-template-columns: 1fr;
-    }
-    .beam {
-      grid-row: span 1;     
-    }
-    .beam img {
-      height: 200px;            
-    }
-  }
-</style>
-
-<div class="travel-grid">
-
-  <figure>
-    <img src="./pic/fish_school.jpg" alt="School of Fish">
-    <figcaption><strong>Phuket, Thailand</strong><br/>Yellow snappers swirling in the blue</figcaption>
-  </figure>
-
-  <figure class="beam">
-    <img src="./pic/cenote_beam.png" alt="Cenote Light Beam">
-    <figcaption><strong>Cenote Maravilla, Mexico</strong><br/>Sunbeams piercing the abyss</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./pic/mountain_dawn.png" alt="Sunrise over Mountains">
-    <figcaption><strong>Tibetan Plateau, China</strong><br/>First light painting the peaks</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./pic/desert_stars.jpg" alt="Milky Way Desert">
-    <figcaption><strong>Joshua Tree, USA</strong><br/>Milky Way shimmering above the yuccas</figcaption>
-  </figure>
-
-</div>
-
-
-
+- 📧 **Email**: [seanxie249@gmail.com](mailto:seanxie249@gmail.com)
+- 💼 **LinkedIn**: [linkedin.com/in/seanxie2024](https://linkedin.com/in/seanxie2024)
+- 🛠️ **GitHub**: [github.com/XYCrus](https://github.com/XYCrus)
 
 ---
 
-## 🎮 Gamer Corner
+⭐ **If this website impressed you, give it a star!** It showcases the same attention to detail and technical excellence I bring to all my projects.
 
-* **Platforms:** PS5 • Switch • PC
-* **Genre comfort food:** Souls‑likes, bullet‑hell, roguelikes
-* **Current obsession:** Dropping into *HELLDIVERS 2* lobbies yelling “For Super Earth!” 🤘
-
----
-
-## 📬 Get in Touch
-
-* 📧 **Email:** [seanxie249@gmail.com](mailto:seanxie249@gmail.com)
-* 💼 **LinkedIn:** [linkedin.com/in/seanxie2024/](https://www.linkedin.com/in/seanxie2024/)
-* 🛠️ **GitHub:** [github.com/XYCrus](https://github.com/XYCrus)
-
-Feel free to reach out for collaboration, research opportunities, or just to talk about AI! 🌟
-
----
-
-© 2025 Xiangyu (Sean) Xie | Built with ❤️ using GitHub Pages
+© 2025 Xiangyu (Sean) Xie | Built with ❤️ and cutting-edge web technologies
