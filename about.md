@@ -39,85 +39,95 @@ I don't just want to build things—I want to build things that matter. OnlySpor
 
 ## 📚 Academic Journey
 
-### Cornell University (2024 - Present)
+### Cornell University (Expected Dec. 2025)
 **M.Eng. Operations Research and Information Engineering**
 
-- **Focus Areas**: Machine Learning, Optimization, Data Science
-- **Key Projects**: OnlySportsLM, Predictive Sports Analytics, ML Systems Design
-- **Research**: Sports-specific language models, efficient neural architectures
+- **Focus Areas**: Simulation and Modeling Analysis, Markov Chain, Time Series Analysis, Data Mining, Optimization
+- **Key Projects**: OnlySportsLM, Production Scheduling Optimization (Niagara Bottling), Sports Analytics
+- **Research**: Sports-specific language models, efficient neural architectures, MILP optimization
 
-### Shanghai (Undergraduate Studies)
-**Background in Mathematics and Computer Science**
+### New York University (Sep. 2020 - May 2024)
+**Bachelor of Arts in Computer and Data Science**
 
-- Strong foundation in mathematical modeling and statistical analysis
-- Early exposure to programming and algorithmic thinking
-- Developed passion for data-driven decision making
+- **Advanced Coursework**: Advanced Machine Learning, Deep Learning, Causal Inference, Database Management, Big Data Processing
+- **Foundation**: Strong mathematical and computational background
+- **Research Experience**: RNN models for educational assessment, PyTorch implementations
 
 ## 💼 Professional Experience
 
-### Machine Learning Engineer
-**Research Projects & Consulting**
+### Data Engineering Intern | Cornspring (Jun. 2025 – Aug. 2025)
+**Cloud-Native ETL & Financial Data Processing**
 
-- Designed and implemented custom RWKV-v6 architecture for domain-specific applications
-- Built end-to-end ML pipelines processing 600B+ tokens of sports data
-- Achieved 37.6% accuracy improvement over existing baselines with 90% fewer parameters
-- Published research at NeurIPS 2024 ENLSP Workshop
+- Designed & deployed cloud-agnostic ETL in **AWS** (S3, Lambda, Step Functions, SQS, RDS) and **Azure** (Blob, Functions) to ingest tens of millions of global equity-price, FX, fundamentals, ETF-holdings, and index records daily
+- Built high-throughput Python ingestion using **asyncio/aiohttp** with vendor APIs/SFTP, schema-drift checks, and partitioned storage
+- Engineered financial indicators (moving averages, RSI, volatility) and corporate-actions enrichment, **improving model accuracy and cutting analyst prep time by ~60%**
+- Introduced **IaC + CI/CD** and standardized PostgreSQL staging, shrinking deployments from hours to minutes
 
-### Data Engineering Specialist
-**Cloud & Big Data Systems**
+### Data Management Intern | JM Family Enterprises (Jun. 2023 – Aug. 2023)
+**Enterprise Data Architecture & BI Systems**
 
-- Developed scalable data pipelines using Azure Synapse, HDFS, and Hadoop ecosystem
-- Implemented real-time data processing for sports analytics applications
-- Optimized query performance for large-scale statistical computations
-- Built visualization dashboards using Power BI and Tableau
+- Built **ADF pipelines** and 7 Synapse external tables/views (T-SQL + Git) to land JSON/Parquet into relational models
+- Modeled facts/dimensions and implemented a **STAR schema** enabling self-serve reporting on dealership expansion & monthly contract volume
+- Cataloged **~400 BI assets** across Cognos/Tableau/Power BI and mapped 130+ COE objects (~500 relationships)
+- Prototyped a **1,083-asset Collibra data dictionary** to improve discoverability
+
+### Data Analyst Co-op | J&J HiSoftware LLC (Sep. 2022 – Jan. 2023)
+**Educational AI & Predictive Modeling**
+
+- Automated ETL in Python to clean and standardize platform/assessment data, **cutting processing time by ~50%**
+- Built an **RNN (LPKT) in PyTorch** to predict student assessment outcomes from sequential interaction data
+- Applied **propensity score matching** to reduce selection bias and improve model accuracy and fairness
+- **Integrated the model pipeline with production servers**, enabling real-time scoring and iteration
+- Translated model insights into quiz-design recommendations, aligning stakeholders across education partners
 
 ## 🛠️ Technical Arsenal
 
-### Programming Languages
+### Programming & Core Technologies
 ```python
-favorite_languages = {
-    "Python": "Primary language for ML/AI development",
-    "SQL": "Data manipulation and analysis",
-    "R": "Statistical modeling and research",
-    "Java": "System design and enterprise applications",
-    "JavaScript": "Full-stack development and visualizations"
+tech_stack = {
+    "Languages": ["Python", "SQL", "R", "Java"],
+    "ML/AI": ["pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "RWKV"],
+    "Optimization": ["Gurobi", "MILP"],
+    "Data Engineering": ["ETL/ELT", "STAR schema", "asyncio/aiohttp", "boto3"]
 }
 ```
 
-### Machine Learning & AI
-- **Deep Learning**: PyTorch, TensorFlow, JAX
-- **NLP**: Transformers, RWKV, Custom Architectures
-- **MLOps**: Model deployment, monitoring, and scaling
-- **Research**: Paper implementation, experimental design
+### Cloud & Infrastructure
+- **AWS**: S3, Lambda, Step Functions, SQS, RDS, CloudWatch
+- **Azure**: ADF, Synapse, ADLS2, Functions, Blob Storage
+- **Data Formats**: Parquet, JSON
+- **DevOps**: Git, IaC, CI/CD pipelines
 
-### Data Engineering
-- **Cloud Platforms**: Azure (Synapse, ADLS2, SSMS)
-- **Big Data**: Hadoop, HDFS, Hive, MapReduce
-- **Databases**: PostgreSQL, MongoDB, Redis
-- **ETL/ELT**: Apache Spark, Airflow, dbt
+### Data & Analytics
+- **Visualization**: Tableau, Power BI, Cognos
+- **Data Governance**: Collibra
+- **Big Data**: Hadoop ecosystem
+- **Databases**: PostgreSQL, relational modeling
 
-### Visualization & Analytics
-- **Business Intelligence**: Power BI, Tableau
-- **Programming**: D3.js, Plotly, Matplotlib
-- **Statistical Analysis**: Excel (Advanced), SPSS, SAS
+### Specialized Skills
+- **Optimization**: MILP modeling, production scheduling
+- **Financial Data**: Equity pricing, FX, fundamentals, ETF holdings
+- **Educational AI**: Sequential modeling, assessment prediction
+- **Sports Analytics**: Language models, domain-specific AI
 
 ## 🏆 Key Achievements
 
 ### Research & Publications
 - **NeurIPS 2024 ENLSP Workshop**: "OnlySportsLM: Efficient Sports-Specific Language Understanding"
-- **Open Source Contributions**: 1000+ GitHub stars across projects
-- **Technical Blogging**: Regular contributor to ML community discussions
+- **196M-parameter RWKV-v6 model**: Achieved **+37.6%** accuracy improvement over previous baselines
+- **600B tokens processed**: Curated and processed massive sports-specific dataset
+- **Open Source Contributions**: Published model, code, and benchmarks for community use
 
-### Technical Milestones
-- Built AI model achieving 37.6% improvement over SOTA with 90% fewer parameters
-- Processed and analyzed 600B+ tokens of specialized domain data
-- Deployed production ML systems serving real-time predictions
-- Created visualization dashboards used by sports analysts and fans
+### Industry Impact
+- **60% reduction** in analyst prep time through automated financial indicators (Cornspring)
+- **50% processing time reduction** through ETL automation (J&J HiSoftware)
+- **38% demand reduction** (1600→1000 EPQs) via MILP optimization (Niagara Bottling)
+- **Production ML deployment**: Real-time educational assessment scoring systems
 
 ### Academic Excellence
-- Cornell ORIE M.Eng. program (Top 10% of class)
-- Research assistant position with leading ML faculty
-- Teaching assistant for advanced data science courses
+- **Cornell ORIE M.Eng.**: Specializing in optimization and data science
+- **NYU Computer & Data Science**: Strong ML and systems foundation
+- **Cross-disciplinary expertise**: Finance, education, manufacturing, and sports domains
 
 ## 🌍 Beyond the Code
 
