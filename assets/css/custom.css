@@ -1419,6 +1419,84 @@ body,
 
 .globe-hint i { color: var(--primary-color); margin-right: 0.35rem; }
 
+/* ===== DETAILED CITY MAP (drill-in from the globe) ===== */
+#city-map {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.06);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    background: #05070f;
+}
+
+.map-wrap.city-active #city-map {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* Hide the globe drag hint while the city map is showing */
+.map-wrap.city-active .globe-hint { opacity: 0; }
+
+#city-map .leaflet-container {
+    width: 100%;
+    height: 100%;
+    background: #05070f;
+    font-family: var(--font-primary);
+}
+
+/* Back-to-globe control */
+.map-back {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 6;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(10, 12, 22, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: var(--transition-smooth);
+}
+
+.map-wrap.city-active .map-back { opacity: 1; visibility: visible; transform: translateY(0); }
+.map-back:hover { border-color: var(--primary-color); color: #fff; transform: translateY(-2px); }
+.map-back i { color: var(--primary-color); }
+
+/* Dark Leaflet popup + controls for the detail map */
+#city-map .leaflet-popup-content-wrapper {
+    background: rgba(15, 15, 26, 0.96);
+    color: #fff;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(59, 130, 246, 0.45);
+}
+#city-map .leaflet-popup-tip { background: rgba(15, 15, 26, 0.96); }
+#city-map .leaflet-popup-content { margin: 0.7rem 1rem; font-size: 0.9rem; }
+#city-map .leaflet-popup-content b { color: #93c5fd; }
+#city-map .leaflet-control-zoom a {
+    background: rgba(15, 15, 26, 0.92) !important;
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+#city-map .leaflet-control-attribution {
+    background: rgba(15, 15, 26, 0.7) !important;
+    color: #64748b !important;
+}
+#city-map .leaflet-control-attribution a { color: #93c5fd !important; }
+
 /* ===== SCROLL PROGRESS + BACK TO TOP ===== */
 .scroll-progress {
     position: fixed;

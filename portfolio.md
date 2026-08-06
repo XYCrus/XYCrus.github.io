@@ -44,11 +44,12 @@ header:
     <div class="section-header" data-aos="fade-up">
       <span class="section-eyebrow">On the Map</span>
       <h2 class="section-title">Career Journey</h2>
-      <p class="lead">Where I've studied, worked, and shared research — plotted on a curved 3D map of the US. Drag to look around and click a marker to explore each stop.</p>
+      <p class="lead">Where I've studied, worked, and shared research — plotted on a curved 3D map of the US. Click any marker to dive from the globe into a detailed map of that city.</p>
     </div>
 
     <div class="map-wrap" data-aos="fade-up" data-aos-delay="100">
       <div id="work-map"></div>
+      <div id="city-map"></div>
     </div>
 
     <div class="map-legend" data-aos="fade-up">

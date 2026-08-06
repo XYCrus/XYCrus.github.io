@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const hint = document.createElement('div');
     hint.className = 'globe-hint';
-    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to look around &middot; click a marker to zoom in';
+    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to look around &middot; click a marker to dive in';
     wrap.appendChild(hint);
 
     let tip;
@@ -643,16 +643,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Zoom into a clicked location's city.
+    // Detailed drill-in map (Leaflet tiles) revealed after the globe dive.
+    let cityMap = null;
+    let cityMarker = null;
+    let cityTimer = null;
+
+    // Back-to-globe control
+    const backBtn = document.createElement('button');
+    backBtn.className = 'map-back';
+    backBtn.innerHTML = '<i class="fas fa-earth-americas"></i> Back to globe';
+    backBtn.addEventListener('click', resetView);
+    wrap.appendChild(backBtn);
+
+    function ensureCityMap() {
+        if (cityMap || typeof L === 'undefined') return cityMap;
+        const cm = document.getElementById('city-map');
+        if (!cm) return null;
+        cityMap = L.map(cm, { zoomControl: false, attributionControl: true, scrollWheelZoom: true });
+        L.control.zoom({ position: 'bottomleft' }).addTo(cityMap);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(cityMap);
+        return cityMap;
+    }
+
+    function openCityMap(d) {
+        const map = ensureCityMap();
+        if (!map) return;
+        wrap.classList.add('city-active');
+        if (cityMarker) cityMarker.remove();
+        cityMarker = L.circleMarker([d.lat, d.lng], {
+            radius: 9, color: '#fff', weight: 2,
+            fillColor: colorFor(d), fillOpacity: 1
+        }).addTo(map).bindPopup(`<b>${d.title}</b><br>${d.place} &middot; ${d.when}`);
+        // Let the container become visible, then size + frame the city.
+        setTimeout(() => {
+            map.invalidateSize();
+            map.setView([d.lat, d.lng], 11, { animate: false });
+            cityMarker.openPopup();
+        }, 80);
+    }
+
+    // Zoom into a clicked location's city, then dive into the detailed map.
     function focusCity(d) {
         focus = [d.lng, d.lat];
         zoomed = true;
         svg.classed('zoomed', true);
         animateView([-d.lng, -d.lat], baseScale * ZOOM_FACTOR);
+        clearTimeout(cityTimer);
+        cityTimer = setTimeout(() => openCityMap(d), 700);
     }
 
-    // Zoom back out to the US overview.
+    // Return to the US globe overview.
     function resetView() {
+        clearTimeout(cityTimer);
+        wrap.classList.remove('city-active');
         focus = US_CENTER.slice();
         zoomed = false;
         svg.classed('zoomed', false);
