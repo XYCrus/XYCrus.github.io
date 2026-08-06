@@ -592,6 +592,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     svg.call(drag);
     svg.on('click', () => panel.classList.remove('show'));
+    // Prevent the browser's native image/element drag (ghost image) on the globe.
+    svg.on('dragstart', (event) => event.preventDefault());
+    el.addEventListener('dragstart', (e) => e.preventDefault());
 
     // Load world land and draw
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
