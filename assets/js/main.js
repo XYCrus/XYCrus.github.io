@@ -462,9 +462,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // continental US front-and-center while still showing Vancouver and Florida.
     // (MultiPoint avoids polygon-winding ambiguity that can zoom to the whole hemisphere.)
     const FOCUS = { type: 'MultiPoint', coordinates: [[-132, 16], [-60, 16], [-60, 55], [-132, 55]] };
-    const LON_RANGE = 16;
-    const LAT_RANGE = 11;
+    const ZOOM_FACTOR = 3.4;          // how far a marker click zooms into its city
     const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+    // Major US cities for geographic reference (labels appear when zoomed in).
+    const CITIES = [
+        { name: 'New York', lat: 40.7128, lng: -74.0060 },
+        { name: 'Washington', lat: 38.9072, lng: -77.0369 },
+        { name: 'Boston', lat: 42.3601, lng: -71.0589 },
+        { name: 'Chicago', lat: 41.8781, lng: -87.6298 },
+        { name: 'Atlanta', lat: 33.7490, lng: -84.3880 },
+        { name: 'Miami', lat: 25.7617, lng: -80.1918 },
+        { name: 'Houston', lat: 29.7604, lng: -95.3698 },
+        { name: 'Dallas', lat: 32.7767, lng: -96.7970 },
+        { name: 'Denver', lat: 39.7392, lng: -104.9903 },
+        { name: 'Phoenix', lat: 33.4484, lng: -112.0740 },
+        { name: 'Los Angeles', lat: 34.0522, lng: -118.2437 },
+        { name: 'San Francisco', lat: 37.7749, lng: -122.4194 },
+        { name: 'Seattle', lat: 47.6062, lng: -122.3321 },
+        { name: 'Minneapolis', lat: 44.9778, lng: -93.2650 }
+    ];
 
     const projection = d3.geoOrthographic().clipAngle(90);
 
@@ -475,6 +492,10 @@ document.addEventListener('DOMContentLoaded', function() {
         projection.fitExtent([[58, 58], [width - 58, height - 58]], FOCUS);
     }
     frameUS();
+
+    let baseScale = projection.scale();      // overview scale
+    let focus = US_CENTER.slice();           // current center [lng, lat]
+    let zoomed = false;
 
     const path = d3.geoPath(projection);
 
@@ -495,11 +516,13 @@ document.addEventListener('DOMContentLoaded', function() {
     atmos.append('stop').attr('offset', '96%').attr('stop-color', 'rgba(59,130,246,0.28)');
     atmos.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(59,130,246,0)');
 
-    // Atmosphere halo behind the globe
+    // Layers (back to front)
     const halo = svg.append('circle').attr('class', 'globe-atmos').attr('fill', 'url(#atmosGrad)');
     const sphere = svg.append('path').datum({ type: 'Sphere' }).attr('class', 'globe-sphere').attr('fill', 'url(#oceanGrad)');
     const grat = svg.append('path').datum(d3.geoGraticule10()).attr('class', 'globe-grat');
     const landPath = svg.append('path').attr('class', 'globe-land');
+    const statesPath = svg.append('path').attr('class', 'globe-states');
+    const cityG = svg.append('g').attr('class', 'globe-cities');
     const markerG = svg.append('g').attr('class', 'globe-markers');
 
     // Overlays: details panel + drag hint
@@ -510,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const hint = document.createElement('div');
     hint.className = 'globe-hint';
-    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to look around &middot; click a marker';
+    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to look around &middot; click a marker to zoom in';
     wrap.appendChild(hint);
 
     let tip;
@@ -521,35 +544,52 @@ document.addEventListener('DOMContentLoaded', function() {
             .attr('r', projection.scale() * 1.02);
     }
 
-    function renderMarkers() {
+    function frontVisible(d) {
         const center = [-projection.rotate()[0], -projection.rotate()[1]];
-        const groups = markerG.selectAll('g.mk').data(locations, d => d.title);
+        return d3.geoDistance([d.lng, d.lat], center) < Math.PI / 2;
+    }
 
+    function renderCities() {
+        const groups = cityG.selectAll('g.city').data(CITIES, d => d.name);
+        const enter = groups.enter().append('g').attr('class', 'city');
+        enter.append('circle').attr('class', 'city-dot').attr('r', 1.7);
+        enter.append('text').attr('class', 'city-label').attr('x', 5).attr('y', 3).text(d => d.name);
+
+        cityG.selectAll('g.city').each(function(d) {
+            const c = projection([d.lng, d.lat]);
+            d3.select(this)
+                .style('display', c && frontVisible(d) ? null : 'none')
+                .attr('transform', c ? `translate(${c[0]},${c[1]})` : null);
+        });
+    }
+
+    function renderMarkers() {
+        const groups = markerG.selectAll('g.mk').data(locations, d => d.title);
         const enter = groups.enter().append('g')
             .attr('class', d => `mk cat-${d.category}`)
             .style('cursor', 'pointer')
             .on('mouseenter', function(event, d) { showTip(event, d); })
             .on('mousemove', function(event) { moveTip(event); })
             .on('mouseleave', hideTip)
-            .on('click', function(event, d) { event.stopPropagation(); rotateTo(d); showPanel(d); });
+            .on('click', function(event, d) { event.stopPropagation(); focusCity(d); showPanel(d); });
         enter.append('circle').attr('class', 'mk-pulse').attr('r', 6);
         enter.append('circle').attr('class', 'mk-dot').attr('r', 5);
 
-        markerG.selectAll('g.mk')
-            .each(function(d) {
-                const coords = projection([d.lng, d.lat]);
-                const visible = d3.geoDistance([d.lng, d.lat], center) < Math.PI / 2;
-                d3.select(this)
-                    .style('display', visible && coords ? null : 'none')
-                    .attr('transform', coords ? `translate(${coords[0]},${coords[1]})` : null);
-            });
+        markerG.selectAll('g.mk').each(function(d) {
+            const coords = projection([d.lng, d.lat]);
+            d3.select(this)
+                .style('display', coords && frontVisible(d) ? null : 'none')
+                .attr('transform', coords ? `translate(${coords[0]},${coords[1]})` : null);
+        });
     }
 
     function redraw() {
         sphere.attr('d', path);
         grat.attr('d', path);
         landPath.attr('d', path);
+        statesPath.attr('d', path);
         updateHalo();
+        renderCities();
         renderMarkers();
     }
 
@@ -577,52 +617,75 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="gp-place"><i class="fas fa-location-dot"></i> ${d.place} &middot; ${d.when}</div>
             <p>${d.description}</p>`;
         panel.classList.add('show');
-        panel.querySelector('.gp-close').addEventListener('click', () => panel.classList.remove('show'));
+        panel.querySelector('.gp-close').addEventListener('click', resetView);
     }
 
-    function rotateTo(d) {
-        const start = projection.rotate();
-        const end = [
-            clamp(-d.lng, -US_CENTER[0] - LON_RANGE, -US_CENTER[0] + LON_RANGE),
-            clamp(-d.lat, -US_CENTER[1] - LAT_RANGE, -US_CENTER[1] + LAT_RANGE)
-        ];
-        const interp = d3.interpolate(start, end);
-        d3.transition().duration(900).tween('rotate', () => (t) => {
-            projection.rotate(interp(t));
+    // Animate rotation + scale together (used for zoom-in and zoom-out).
+    function animateView(targetRotate, targetScale) {
+        const r0 = projection.rotate();
+        const s0 = projection.scale();
+        const ri = d3.interpolate(r0, targetRotate);
+        const si = d3.interpolate(s0, targetScale);
+        d3.transition().duration(850).tween('view', () => (t) => {
+            projection.rotate(ri(t));
+            projection.scale(si(t));
             redraw();
         });
     }
 
-    // Drag to look around, clamped so the map stays focused on the US.
+    // Zoom into a clicked location's city.
+    function focusCity(d) {
+        focus = [d.lng, d.lat];
+        zoomed = true;
+        svg.classed('zoomed', true);
+        animateView([-d.lng, -d.lat], baseScale * ZOOM_FACTOR);
+    }
+
+    // Zoom back out to the US overview.
+    function resetView() {
+        focus = US_CENTER.slice();
+        zoomed = false;
+        svg.classed('zoomed', false);
+        panel.classList.remove('show');
+        animateView([-US_CENTER[0], -US_CENTER[1]], baseScale);
+    }
+
+    // Drag to look around, clamped around the current focus (US overview, or the
+    // zoomed-in city) so the view never spins off to another continent.
     const drag = d3.drag()
         .on('start', () => hideTip())
         .on('drag', (event) => {
-            const k = 0.35;
+            const k = zoomed ? 0.16 : 0.35;
+            const lonR = zoomed ? 7 : 16;
+            const latR = zoomed ? 5 : 11;
+            const cx = -focus[0];
+            const cy = -focus[1];
             const r = projection.rotate();
             projection.rotate([
-                clamp(r[0] + event.dx * k, -US_CENTER[0] - LON_RANGE, -US_CENTER[0] + LON_RANGE),
-                clamp(r[1] - event.dy * k, -US_CENTER[1] - LAT_RANGE, -US_CENTER[1] + LAT_RANGE)
+                clamp(r[0] + event.dx * k, cx - lonR, cx + lonR),
+                clamp(r[1] - event.dy * k, cy - latR, cy + latR)
             ]);
             redraw();
         });
     svg.call(drag);
-    svg.on('click', () => panel.classList.remove('show'));
+    svg.on('click', () => { if (zoomed || panel.classList.contains('show')) resetView(); });
     // Kill the browser's native drag "ghost image" anywhere inside the globe.
-    // Capture phase runs before other handlers so the drag never starts.
     document.addEventListener('dragstart', (e) => {
         if (e.target && e.target.closest && e.target.closest('.map-wrap')) e.preventDefault();
     }, true);
     svg.node().setAttribute('draggable', 'false');
 
-    // Load world land and draw
-    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-        .then(world => {
-            landPath.datum(topojson.feature(world, world.objects.countries));
-            redraw();
-        })
-        .catch(() => { redraw(); });
+    // Load detailed coastlines (50m) + US state borders and draw.
+    Promise.all([
+        d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json'),
+        d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+    ]).then(([world, us]) => {
+        landPath.datum(topojson.feature(world, world.objects.countries));
+        statesPath.datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b));
+        redraw();
+    }).catch(() => { redraw(); });
 
-    // Initial paint (sphere/graticule/markers before land loads)
+    // Initial paint before data loads
     redraw();
 
     const resize = debounce(() => {
@@ -630,6 +693,10 @@ document.addEventListener('DOMContentLoaded', function() {
         height = el.clientHeight;
         svg.attr('width', width).attr('height', height);
         frameUS();
+        baseScale = projection.scale();
+        if (zoomed) {
+            projection.rotate([-focus[0], -focus[1]]).scale(baseScale * ZOOM_FACTOR);
+        }
         redraw();
     }, 150);
     window.addEventListener('resize', resize);
