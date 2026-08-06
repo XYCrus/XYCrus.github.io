@@ -458,13 +458,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let width = el.clientWidth;
     let height = el.clientHeight;
 
-    const projection = d3.geoOrthographic()
-        .translate([width / 2, height / 2])
-        .clipAngle(90)
-        .rotate([-US_CENTER[0], -US_CENTER[1]]);
+    // Curved 3D map zoomed to frame North America — corner points that keep the
+    // continental US front-and-center while still showing Vancouver and Florida.
+    // (MultiPoint avoids polygon-winding ambiguity that can zoom to the whole hemisphere.)
+    const FOCUS = { type: 'MultiPoint', coordinates: [[-130, 20], [-62, 20], [-62, 53], [-130, 53]] };
+    const LON_RANGE = 24;
+    const LAT_RANGE = 16;
+    const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
-    const scaleFor = () => Math.min(width, height) / 2 * 1.05;
-    projection.scale(scaleFor());
+    const projection = d3.geoOrthographic().clipAngle(90);
+
+    // Zoom + center the curved map on the US.
+    function frameUS() {
+        projection.rotate([-US_CENTER[0], -US_CENTER[1]]);
+        projection.fitExtent([[30, 30], [width - 30, height - 30]], FOCUS);
+    }
+    frameUS();
 
     const path = d3.geoPath(projection);
 
@@ -500,7 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const hint = document.createElement('div');
     hint.className = 'globe-hint';
-    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to spin &middot; click a marker';
+    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to look around &middot; click a marker';
     wrap.appendChild(hint);
 
     let tip;
@@ -572,7 +581,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function rotateTo(d) {
         const start = projection.rotate();
-        const end = [-d.lng, -d.lat];
+        const end = [
+            clamp(-d.lng, -US_CENTER[0] - LON_RANGE, -US_CENTER[0] + LON_RANGE),
+            clamp(-d.lat, -US_CENTER[1] - LAT_RANGE, -US_CENTER[1] + LAT_RANGE)
+        ];
         const interp = d3.interpolate(start, end);
         d3.transition().duration(900).tween('rotate', () => (t) => {
             projection.rotate(interp(t));
@@ -580,14 +592,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Drag to spin the globe
-    let v0;
+    // Drag to look around, clamped so the map stays focused on the US.
     const drag = d3.drag()
         .on('start', () => hideTip())
         .on('drag', (event) => {
-            const k = 0.4;
+            const k = 0.35;
             const r = projection.rotate();
-            projection.rotate([r[0] + event.dx * k, Math.max(-85, Math.min(85, r[1] - event.dy * k))]);
+            projection.rotate([
+                clamp(r[0] + event.dx * k, -US_CENTER[0] - LON_RANGE, -US_CENTER[0] + LON_RANGE),
+                clamp(r[1] - event.dy * k, -US_CENTER[1] - LAT_RANGE, -US_CENTER[1] + LAT_RANGE)
+            ]);
             redraw();
         });
     svg.call(drag);
@@ -614,7 +628,7 @@ document.addEventListener('DOMContentLoaded', function() {
         width = el.clientWidth;
         height = el.clientHeight;
         svg.attr('width', width).attr('height', height);
-        projection.translate([width / 2, height / 2]).scale(scaleFor());
+        frameUS();
         redraw();
     }, 150);
     window.addEventListener('resize', resize);
