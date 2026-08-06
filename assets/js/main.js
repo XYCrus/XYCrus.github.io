@@ -521,6 +521,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sphere = svg.append('path').datum({ type: 'Sphere' }).attr('class', 'globe-sphere').attr('fill', 'url(#oceanGrad)');
     const grat = svg.append('path').datum(d3.geoGraticule10()).attr('class', 'globe-grat');
     const landPath = svg.append('path').attr('class', 'globe-land');
+    const nationPath = svg.append('path').attr('class', 'globe-nation');
     const statesPath = svg.append('path').attr('class', 'globe-states');
     const cityG = svg.append('g').attr('class', 'globe-cities');
     const markerG = svg.append('g').attr('class', 'globe-markers');
@@ -587,10 +588,19 @@ document.addEventListener('DOMContentLoaded', function() {
         sphere.attr('d', path);
         grat.attr('d', path);
         landPath.attr('d', path);
+        nationPath.attr('d', path);
         statesPath.attr('d', path);
         updateHalo();
         renderCities();
         renderMarkers();
+    }
+
+    // Coalesce drag repaints to one per animation frame (avoids smearing under load).
+    let rafPending = false;
+    function scheduleRedraw() {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => { rafPending = false; redraw(); });
     }
 
     function showTip(event, d) {
@@ -665,7 +675,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 clamp(r[0] + event.dx * k, cx - lonR, cx + lonR),
                 clamp(r[1] - event.dy * k, cy - latR, cy + latR)
             ]);
-            redraw();
+            scheduleRedraw();
         });
     svg.call(drag);
     svg.on('click', () => { if (zoomed || panel.classList.contains('show')) resetView(); });
@@ -675,12 +685,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }, true);
     svg.node().setAttribute('draggable', 'false');
 
-    // Load detailed coastlines (50m) + US state borders and draw.
+    // Light world land (110m) for context + crisp 10m US (nation outline & state
+    // borders). Keeping the heavy geometry limited to the US keeps dragging smooth.
     Promise.all([
-        d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json'),
+        d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
         d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
     ]).then(([world, us]) => {
         landPath.datum(topojson.feature(world, world.objects.countries));
+        nationPath.datum(topojson.feature(us, us.objects.nation));
         statesPath.datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b));
         redraw();
     }).catch(() => { redraw(); });

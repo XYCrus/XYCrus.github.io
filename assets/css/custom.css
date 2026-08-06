@@ -1268,26 +1268,34 @@ body,
     transition: fill 0.3s ease;
 }
 
-/* US state borders */
-.globe-states {
-    fill: none;
-    stroke: rgba(148, 163, 184, 0.28);
-    stroke-width: 0.5;
+/* Crisp US coastline (10m) drawn over the lighter world land */
+.globe-nation {
+    fill: #223250;
+    stroke: rgba(148, 163, 184, 0.55);
+    stroke-width: 0.7;
     vector-effect: non-scaling-stroke;
 }
 
-/* City reference points + labels (labels reveal when zoomed in) */
-.globe-cities .city-dot { fill: rgba(203, 213, 225, 0.55); }
+/* US state borders */
+.globe-states {
+    fill: none;
+    stroke: rgba(148, 163, 184, 0.4);
+    stroke-width: 0.6;
+    vector-effect: non-scaling-stroke;
+}
+
+/* City reference points + labels (faint on overview, full when zoomed in) */
+.globe-cities .city-dot { fill: rgba(226, 232, 240, 0.7); }
 .globe-cities .city-label {
-    fill: rgba(226, 232, 240, 0.9);
+    fill: rgba(226, 232, 240, 0.92);
     font-family: var(--font-primary);
     font-size: 10px;
     font-weight: 500;
-    opacity: 0;
+    opacity: 0.42;
     transition: opacity 0.4s ease;
     pointer-events: none;
     paint-order: stroke;
-    stroke: rgba(5, 7, 15, 0.75);
+    stroke: rgba(5, 7, 15, 0.8);
     stroke-width: 2.5px;
     stroke-linejoin: round;
 }
