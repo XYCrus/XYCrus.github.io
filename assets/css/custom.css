@@ -1256,7 +1256,7 @@ body,
 .legend-dot.research { background: #06d6a0; }
 
 /* SVG globe primitives */
-.globe-svg { display: block; margin: 0 auto; width: 100%; height: 100%; }
+.globe-svg { display: block; margin: 0 auto; width: 100%; height: 100%; user-select: none; -webkit-user-select: none; }
 .globe-atmos { pointer-events: none; }
 .globe-sphere { stroke: rgba(59, 130, 246, 0.25); stroke-width: 1; }
 .globe-grat { fill: none; stroke: rgba(148, 163, 184, 0.12); stroke-width: 0.5; }
@@ -1321,13 +1321,15 @@ body,
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(59, 130, 246, 0.45);
     border-radius: 0.9rem;
-    padding: 1.15rem 1.3rem;
+    padding: 1.15rem 2.4rem 1.15rem 1.3rem;
     z-index: 5;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px);
     transition: var(--transition-smooth);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .globe-panel.show { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -1345,17 +1347,24 @@ body,
 
 .globe-panel .gp-close {
     position: absolute;
-    top: 0.5rem;
-    right: 0.7rem;
-    background: none;
+    top: 0.35rem;
+    right: 0.35rem;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
     border: none;
-    color: #64748b;
-    font-size: 1.1rem;
+    border-radius: 50%;
+    color: #94a3b8;
+    font-size: 1.3rem;
     cursor: pointer;
     line-height: 1;
+    transition: var(--transition-smooth);
 }
 
-.globe-panel .gp-close:hover { color: #fff; }
+.globe-panel .gp-close:hover { color: #fff; background: rgba(239, 68, 68, 0.8); }
 
 /* Drag hint */
 .globe-hint {
