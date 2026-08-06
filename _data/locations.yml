@@ -1,0 +1,34 @@
+# Career, education, and research locations plotted on the portfolio map.
+# category drives marker color: edu | work | research
+
+- title: "Cornell University"
+  place: "Ithaca, NY"
+  when: "2024 – 2025"
+  category: "edu"
+  lat: 42.4534
+  lng: -76.4735
+  description: "M.Eng. in Operations Research & Information Engineering — optimization, simulation, and data mining."
+
+- title: "New York University"
+  place: "New York, NY"
+  when: "2020 – 2024"
+  category: "edu"
+  lat: 40.7291
+  lng: -73.9965
+  description: "B.A. in Computer & Data Science — machine learning, deep learning, and big data foundations."
+
+- title: "JM Family Enterprises"
+  place: "Deerfield Beach, FL"
+  when: "Summer 2023"
+  category: "work"
+  lat: 26.3184
+  lng: -80.0998
+  description: "Data Management Intern — built ADF pipelines and Synapse STAR-schema models powering self-serve BI."
+
+- title: "NeurIPS 2024 · ENLSP"
+  place: "Vancouver, Canada"
+  when: "Dec 2024"
+  category: "research"
+  lat: 49.2827
+  lng: -123.1207
+  description: "Published OnlySportsLM — a 196M-parameter sports language model, +37.6% over prior baselines."

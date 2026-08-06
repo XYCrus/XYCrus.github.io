@@ -380,3 +380,118 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ===== SCROLL PROGRESS BAR + BACK TO TOP =====
+document.addEventListener('DOMContentLoaded', function() {
+    const progress = document.createElement('div');
+    progress.className = 'scroll-progress';
+    document.body.appendChild(progress);
+
+    const toTop = document.createElement('button');
+    toTop.className = 'back-to-top';
+    toTop.setAttribute('aria-label', 'Back to top');
+    toTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(toTop);
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const onScroll = () => {
+        const scrollTop = window.pageYOffset;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = height > 0 ? (scrollTop / height) * 100 + '%' : '0%';
+        toTop.classList.toggle('show', scrollTop > 500);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+});
+
+// ===== ANIMATED NUMBER COUNTERS =====
+// Elements with [data-count] animate from 0 to target when scrolled into view.
+document.addEventListener('DOMContentLoaded', function() {
+    const counters = document.querySelectorAll('[data-count]');
+    if (!counters.length) return;
+
+    const animateCount = (el) => {
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const decimals = (el.dataset.decimals !== undefined)
+            ? parseInt(el.dataset.decimals, 10)
+            : (target % 1 !== 0 ? 1 : 0);
+        const duration = 1600;
+        const start = performance.now();
+
+        const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = (target * eased).toFixed(decimals) + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCount(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+
+    counters.forEach(el => observer.observe(el));
+});
+
+// ===== INTERACTIVE CAREER MAP (Leaflet) =====
+// Reads window.CAREER_LOCATIONS (injected by the portfolio page from _data/locations.yml).
+document.addEventListener('DOMContentLoaded', function() {
+    const mapEl = document.getElementById('work-map');
+    if (!mapEl || typeof L === 'undefined' || !Array.isArray(window.CAREER_LOCATIONS)) return;
+
+    const locations = window.CAREER_LOCATIONS;
+
+    const map = L.map('work-map', {
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: true
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    }).addTo(map);
+
+    const bounds = [];
+
+    locations.forEach(loc => {
+        const icon = L.divIcon({
+            className: '',
+            html: `<div class="map-pin ${loc.category}"></div>`,
+            iconSize: [18, 18],
+            iconAnchor: [9, 9]
+        });
+
+        const popup = `
+            <div class="map-popup">
+                <span class="mp-cat">${loc.category}</span>
+                <h4>${loc.title}</h4>
+                <div class="mp-place"><i class="fas fa-location-dot"></i> ${loc.place} &middot; ${loc.when}</div>
+                <p>${loc.description}</p>
+            </div>`;
+
+        L.marker([loc.lat, loc.lng], { icon })
+            .addTo(map)
+            .bindPopup(popup);
+
+        bounds.push([loc.lat, loc.lng]);
+    });
+
+    if (bounds.length > 1) {
+        map.fitBounds(bounds, { padding: [60, 60] });
+    } else if (bounds.length === 1) {
+        map.setView(bounds[0], 5);
+    }
+
+    // Re-enable wheel zoom only after an explicit click, so the page scrolls naturally.
+    map.on('click', () => map.scrollWheelZoom.enable());
+    map.on('mouseout', () => map.scrollWheelZoom.disable());
+});
