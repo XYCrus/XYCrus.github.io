@@ -461,17 +461,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Curved 3D map zoomed to frame North America — corner points that keep the
     // continental US front-and-center while still showing Vancouver and Florida.
     // (MultiPoint avoids polygon-winding ambiguity that can zoom to the whole hemisphere.)
-    const FOCUS = { type: 'MultiPoint', coordinates: [[-130, 20], [-62, 20], [-62, 53], [-130, 53]] };
-    const LON_RANGE = 24;
-    const LAT_RANGE = 16;
+    const FOCUS = { type: 'MultiPoint', coordinates: [[-132, 16], [-60, 16], [-60, 55], [-132, 55]] };
+    const LON_RANGE = 16;
+    const LAT_RANGE = 11;
     const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
     const projection = d3.geoOrthographic().clipAngle(90);
 
-    // Zoom + center the curved map on the US.
+    // Zoom + center the curved map on the US (a little padding keeps the Earth's
+    // curvature visible while the US still fills the frame).
     function frameUS() {
         projection.rotate([-US_CENTER[0], -US_CENTER[1]]);
-        projection.fitExtent([[30, 30], [width - 30, height - 30]], FOCUS);
+        projection.fitExtent([[58, 58], [width - 58, height - 58]], FOCUS);
     }
     frameUS();
 
