@@ -592,9 +592,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     svg.call(drag);
     svg.on('click', () => panel.classList.remove('show'));
-    // Prevent the browser's native image/element drag (ghost image) on the globe.
-    svg.on('dragstart', (event) => event.preventDefault());
-    el.addEventListener('dragstart', (e) => e.preventDefault());
+    // Kill the browser's native drag "ghost image" anywhere inside the globe.
+    // Capture phase runs before other handlers so the drag never starts.
+    document.addEventListener('dragstart', (e) => {
+        if (e.target && e.target.closest && e.target.closest('.map-wrap')) e.preventDefault();
+    }, true);
+    svg.node().setAttribute('draggable', 'false');
 
     // Load world land and draw
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
