@@ -42,9 +42,9 @@ header:
 <section class="page-section alt">
   <div class="container">
     <div class="section-header" data-aos="fade-up">
-      <span class="section-eyebrow">On the Map</span>
+      <span class="section-eyebrow">On the Globe</span>
       <h2 class="section-title">Career Journey</h2>
-      <p class="lead">Where I've studied, worked, and shared research. Click a marker to explore each stop.</p>
+      <p class="lead">Where I've studied, worked, and shared research — plotted on an interactive 3D globe. Drag to spin it and click a marker to explore each stop.</p>
     </div>
 
     <div class="map-wrap" data-aos="fade-up" data-aos-delay="100">

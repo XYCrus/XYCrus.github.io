@@ -440,58 +440,176 @@ document.addEventListener('DOMContentLoaded', function() {
     counters.forEach(el => observer.observe(el));
 });
 
-// ===== INTERACTIVE CAREER MAP (Leaflet) =====
+// ===== INTERACTIVE 3D CAREER GLOBE (D3 orthographic sphere) =====
 // Reads window.CAREER_LOCATIONS (injected by the portfolio page from _data/locations.yml).
+// Renders a spherical, draggable SVG globe framed on the US. Renders everywhere
+// (no WebGL required), so every visitor sees it.
 document.addEventListener('DOMContentLoaded', function() {
-    const mapEl = document.getElementById('work-map');
-    if (!mapEl || typeof L === 'undefined' || !Array.isArray(window.CAREER_LOCATIONS)) return;
+    const el = document.getElementById('work-map');
+    if (!el || typeof d3 === 'undefined' || typeof topojson === 'undefined' || !Array.isArray(window.CAREER_LOCATIONS)) return;
 
     const locations = window.CAREER_LOCATIONS;
+    const colors = { edu: '#8b5cf6', work: '#3b82f6', research: '#06d6a0' };
+    const colorFor = (d) => colors[d.category] || '#3b82f6';
 
-    const map = L.map('work-map', {
-        scrollWheelZoom: false,
-        zoomControl: true,
-        attributionControl: true
-    });
+    // Center of the continental US — the globe stays framed here.
+    const US_CENTER = [-98.35, 39.5];
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-    }).addTo(map);
+    let width = el.clientWidth;
+    let height = el.clientHeight;
 
-    const bounds = [];
+    const projection = d3.geoOrthographic()
+        .translate([width / 2, height / 2])
+        .clipAngle(90)
+        .rotate([-US_CENTER[0], -US_CENTER[1]]);
 
-    locations.forEach(loc => {
-        const icon = L.divIcon({
-            className: '',
-            html: `<div class="map-pin ${loc.category}"></div>`,
-            iconSize: [18, 18],
-            iconAnchor: [9, 9]
-        });
+    const scaleFor = () => Math.min(width, height) / 2 * 1.05;
+    projection.scale(scaleFor());
 
-        const popup = `
-            <div class="map-popup">
-                <span class="mp-cat">${loc.category}</span>
-                <h4>${loc.title}</h4>
-                <div class="mp-place"><i class="fas fa-location-dot"></i> ${loc.place} &middot; ${loc.when}</div>
-                <p>${loc.description}</p>
-            </div>`;
+    const path = d3.geoPath(projection);
 
-        L.marker([loc.lat, loc.lng], { icon })
-            .addTo(map)
-            .bindPopup(popup);
+    const svg = d3.select(el).append('svg')
+        .attr('class', 'globe-svg')
+        .attr('width', width)
+        .attr('height', height);
 
-        bounds.push([loc.lat, loc.lng]);
-    });
+    // Ocean + atmosphere gradients
+    const defs = svg.append('defs');
+    const ocean = defs.append('radialGradient').attr('id', 'oceanGrad').attr('cx', '42%').attr('cy', '38%').attr('r', '68%');
+    ocean.append('stop').attr('offset', '0%').attr('stop-color', '#1b2a4a');
+    ocean.append('stop').attr('offset', '60%').attr('stop-color', '#0f1830');
+    ocean.append('stop').attr('offset', '100%').attr('stop-color', '#070c18');
 
-    if (bounds.length > 1) {
-        map.fitBounds(bounds, { padding: [60, 60] });
-    } else if (bounds.length === 1) {
-        map.setView(bounds[0], 5);
+    const atmos = defs.append('radialGradient').attr('id', 'atmosGrad').attr('cx', '50%').attr('cy', '50%').attr('r', '50%');
+    atmos.append('stop').attr('offset', '82%').attr('stop-color', 'rgba(59,130,246,0)');
+    atmos.append('stop').attr('offset', '96%').attr('stop-color', 'rgba(59,130,246,0.28)');
+    atmos.append('stop').attr('offset', '100%').attr('stop-color', 'rgba(59,130,246,0)');
+
+    // Atmosphere halo behind the globe
+    const halo = svg.append('circle').attr('class', 'globe-atmos').attr('fill', 'url(#atmosGrad)');
+    const sphere = svg.append('path').datum({ type: 'Sphere' }).attr('class', 'globe-sphere').attr('fill', 'url(#oceanGrad)');
+    const grat = svg.append('path').datum(d3.geoGraticule10()).attr('class', 'globe-grat');
+    const landPath = svg.append('path').attr('class', 'globe-land');
+    const markerG = svg.append('g').attr('class', 'globe-markers');
+
+    // Overlays: details panel + drag hint
+    const wrap = el.closest('.map-wrap') || el;
+    const panel = document.createElement('div');
+    panel.className = 'globe-panel';
+    wrap.appendChild(panel);
+
+    const hint = document.createElement('div');
+    hint.className = 'globe-hint';
+    hint.innerHTML = '<i class="fas fa-hand-pointer"></i> Drag to spin &middot; click a marker';
+    wrap.appendChild(hint);
+
+    let tip;
+
+    function updateHalo() {
+        halo.attr('cx', projection.translate()[0])
+            .attr('cy', projection.translate()[1])
+            .attr('r', projection.scale() * 1.02);
     }
 
-    // Re-enable wheel zoom only after an explicit click, so the page scrolls naturally.
-    map.on('click', () => map.scrollWheelZoom.enable());
-    map.on('mouseout', () => map.scrollWheelZoom.disable());
+    function renderMarkers() {
+        const center = [-projection.rotate()[0], -projection.rotate()[1]];
+        const groups = markerG.selectAll('g.mk').data(locations, d => d.title);
+
+        const enter = groups.enter().append('g')
+            .attr('class', d => `mk cat-${d.category}`)
+            .style('cursor', 'pointer')
+            .on('mouseenter', function(event, d) { showTip(event, d); })
+            .on('mousemove', function(event) { moveTip(event); })
+            .on('mouseleave', hideTip)
+            .on('click', function(event, d) { event.stopPropagation(); rotateTo(d); showPanel(d); });
+        enter.append('circle').attr('class', 'mk-pulse').attr('r', 6);
+        enter.append('circle').attr('class', 'mk-dot').attr('r', 5);
+
+        markerG.selectAll('g.mk')
+            .each(function(d) {
+                const coords = projection([d.lng, d.lat]);
+                const visible = d3.geoDistance([d.lng, d.lat], center) < Math.PI / 2;
+                d3.select(this)
+                    .style('display', visible && coords ? null : 'none')
+                    .attr('transform', coords ? `translate(${coords[0]},${coords[1]})` : null);
+            });
+    }
+
+    function redraw() {
+        sphere.attr('d', path);
+        grat.attr('d', path);
+        landPath.attr('d', path);
+        updateHalo();
+        renderMarkers();
+    }
+
+    function showTip(event, d) {
+        hideTip();
+        tip = document.createElement('div');
+        tip.className = 'globe-tip';
+        tip.innerHTML = `<span class="gt-cat">${d.category}</span><strong>${d.title}</strong><span>${d.place} &middot; ${d.when}</span>`;
+        wrap.appendChild(tip);
+        moveTip(event);
+    }
+    function moveTip(event) {
+        if (!tip) return;
+        const rect = wrap.getBoundingClientRect();
+        tip.style.left = (event.clientX - rect.left + 14) + 'px';
+        tip.style.top = (event.clientY - rect.top + 14) + 'px';
+    }
+    function hideTip() { if (tip) { tip.remove(); tip = null; } }
+
+    function showPanel(d) {
+        panel.innerHTML = `
+            <button class="gp-close" aria-label="Close">&times;</button>
+            <span class="gp-cat">${d.category}</span>
+            <h4>${d.title}</h4>
+            <div class="gp-place"><i class="fas fa-location-dot"></i> ${d.place} &middot; ${d.when}</div>
+            <p>${d.description}</p>`;
+        panel.classList.add('show');
+        panel.querySelector('.gp-close').addEventListener('click', () => panel.classList.remove('show'));
+    }
+
+    function rotateTo(d) {
+        const start = projection.rotate();
+        const end = [-d.lng, -d.lat];
+        const interp = d3.interpolate(start, end);
+        d3.transition().duration(900).tween('rotate', () => (t) => {
+            projection.rotate(interp(t));
+            redraw();
+        });
+    }
+
+    // Drag to spin the globe
+    let v0;
+    const drag = d3.drag()
+        .on('start', () => hideTip())
+        .on('drag', (event) => {
+            const k = 0.4;
+            const r = projection.rotate();
+            projection.rotate([r[0] + event.dx * k, Math.max(-85, Math.min(85, r[1] - event.dy * k))]);
+            redraw();
+        });
+    svg.call(drag);
+    svg.on('click', () => panel.classList.remove('show'));
+
+    // Load world land and draw
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+        .then(world => {
+            landPath.datum(topojson.feature(world, world.objects.countries));
+            redraw();
+        })
+        .catch(() => { redraw(); });
+
+    // Initial paint (sphere/graticule/markers before land loads)
+    redraw();
+
+    const resize = debounce(() => {
+        width = el.clientWidth;
+        height = el.clientHeight;
+        svg.attr('width', width).attr('height', height);
+        projection.translate([width / 2, height / 2]).scale(scaleFor());
+        redraw();
+    }, 150);
+    window.addEventListener('resize', resize);
 });
