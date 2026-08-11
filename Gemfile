@@ -3,6 +3,9 @@ source "https://rubygems.org"
 # Jekyll and GitHub Pages
 gem "github-pages", group: :jekyll_plugins
 
+# webrick was removed from Ruby's stdlib in 3.0; jekyll serve needs it
+gem "webrick", "~> 1.8"
+
 # Essential plugins
 group :jekyll_plugins do
   gem "jekyll-seo-tag"

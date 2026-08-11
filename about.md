@@ -2,200 +2,238 @@
 layout: splash
 title: "About Sean"
 permalink: /about/
+classes: wide
 header:
   overlay_color: "#000"
-  overlay_filter: "0.5"
+  overlay_filter: "0.55"
   overlay_image: /pic/mountain_dawn.png
   caption: "First light on the Tibetan Plateau"
-classes: wide
 ---
 
-# The Story Behind the Code
+<section class="page-section aurora">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="profile-container" style="width:180px;height:180px;margin:0 auto 1.5rem;">
+        <img src="/pic/profile.jpg" alt="Sean Xie" class="profile-image">
+        <div class="profile-glow"></div>
+      </div>
+      <span class="section-eyebrow">The Story Behind the Code</span>
+      <h1 class="section-title">Hi, I'm Sean Xie</h1>
+      <p class="lead">ML engineer and data scientist finishing my M.Eng. at Cornell ORIE. I turn messy, large-scale data into intelligent systems — from financial pipelines to sports-specialized language models.</p>
+    </div>
 
-<div style="text-align: center; margin: 2rem 0;">
-  <img src="/pic/profile.jpg" alt="Sean Xie" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #3b82f6;">
-</div>
+    <blockquote data-aos="fade-up" style="max-width:720px;margin:2rem auto 0;text-align:center;font-size:1.15rem;">
+      "The best way to predict the future is to invent it." — Alan Kay
+    </blockquote>
+  </div>
+</section>
 
-Hey there! I'm Sean (Xiangyu) Xie, a passionate ML engineer and data scientist currently pursuing my M.Eng. in Operations Research and Information Engineering at Cornell University. But there's so much more to my story than just the academic credentials.
+<section class="page-section alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-eyebrow">What Drives Me</span>
+      <h2 class="section-title">Principles</h2>
+    </div>
 
-## 🚀 My Mission
+    <div class="card-grid">
+      <div class="glass-card accent-blue" data-aos="fade-up">
+        <div class="card-icon"><i class="fas fa-gem"></i></div>
+        <h3>Technical Excellence</h3>
+        <p>Clean, efficient code and systems that don't just work — they work beautifully. From RWKV architectures to scalable pipelines, craftsmanship matters.</p>
+      </div>
+      <div class="glass-card accent-purple" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon"><i class="fas fa-infinity"></i></div>
+        <h3>Continuous Learning</h3>
+        <p>Technology evolves fast, and so do I — diving into transformer internals, new visualization techniques, and the latest in MLOps.</p>
+      </div>
+      <div class="glass-card accent-green" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Impact &amp; Innovation</h3>
+        <p>I build things that matter. OnlySportsLM shows that specialized AI can democratize expertise and make analysis accessible to everyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-I believe in the power of data to transform how we understand and interact with the world. Whether it's building AI systems that can understand sports like a seasoned analyst or creating data pipelines that process billions of tokens, I'm driven by the challenge of turning complex problems into elegant solutions.
+<section class="page-section aurora">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-eyebrow">Journey</span>
+      <h2 class="section-title">Experience &amp; Education</h2>
+    </div>
 
-> "The best way to predict the future is to invent it." - Alan Kay
+    <div class="timeline">
+      <div class="timeline-item work" data-aos="fade-left">
+        <div class="timeline-card">
+          <span class="timeline-when">Jun 2025 – Aug 2025</span>
+          <h3>Data Engineering Intern</h3>
+          <span class="timeline-role">Cornspring · Cloud-Native ETL &amp; Financial Data</span>
+          <ul>
+            <li>Deployed cloud-agnostic ETL on AWS (S3, Lambda, Step Functions, SQS, RDS) and Azure to ingest tens of millions of equity, FX, and fundamentals records daily.</li>
+            <li>Built high-throughput async ingestion (asyncio/aiohttp) with schema-drift checks and partitioned storage.</li>
+            <li>Engineered financial indicators &amp; corporate-actions enrichment, cutting analyst prep time by ~60%.</li>
+            <li>Introduced IaC + CI/CD, shrinking deployments from hours to minutes.</li>
+          </ul>
+        </div>
+      </div>
 
-This quote resonates deeply with me. Every day, I work towards building the future through intelligent systems and innovative approaches to machine learning.
+      <div class="timeline-item edu" data-aos="fade-left">
+        <div class="timeline-card">
+          <span class="timeline-when">2024 – Dec 2025 (expected)</span>
+          <h3>M.Eng., Operations Research &amp; Information Engineering</h3>
+          <span class="timeline-role">Cornell University</span>
+          <ul>
+            <li>Focus: simulation &amp; modeling, Markov chains, time series, data mining, optimization.</li>
+            <li>Projects: OnlySportsLM, production scheduling optimization (Niagara Bottling), sports analytics.</li>
+          </ul>
+        </div>
+      </div>
 
-## 🎯 What Drives Me
+      <div class="timeline-item research" data-aos="fade-left">
+        <div class="timeline-card">
+          <span class="timeline-when">Dec 2024</span>
+          <h3>Published at NeurIPS 2024 · ENLSP Workshop</h3>
+          <span class="timeline-role">OnlySportsLM</span>
+          <ul>
+            <li>196M-parameter RWKV-v6 model with a +37.6% accuracy gain over previous baselines.</li>
+            <li>Curated and processed 600B tokens of sports-specific data; open-sourced model, code, and benchmarks.</li>
+          </ul>
+        </div>
+      </div>
 
-### Technical Excellence
-I'm obsessed with writing clean, efficient code and building systems that not only work but work beautifully. From optimizing RWKV architectures to designing scalable data pipelines, I believe that technical craftsmanship matters.
+      <div class="timeline-item work" data-aos="fade-left">
+        <div class="timeline-card">
+          <span class="timeline-when">Jun 2023 – Aug 2023</span>
+          <h3>Data Management Intern</h3>
+          <span class="timeline-role">JM Family Enterprises · Data Architecture &amp; BI</span>
+          <ul>
+            <li>Built ADF pipelines and 7 Synapse external tables/views (T-SQL + Git) landing JSON/Parquet into relational models.</li>
+            <li>Implemented a STAR schema enabling self-serve reporting; cataloged ~400 BI assets across Cognos/Tableau/Power BI.</li>
+          </ul>
+        </div>
+      </div>
 
-### Continuous Learning
-Technology evolves rapidly, and so do I. Whether it's diving deep into transformer architectures, exploring new visualization techniques, or understanding the latest in MLOps, I'm always pushing the boundaries of my knowledge.
+      <div class="timeline-item work" data-aos="fade-left">
+        <div class="timeline-card">
+          <span class="timeline-when">Sep 2022 – Jan 2023</span>
+          <h3>Data Analyst Co-op</h3>
+          <span class="timeline-role">J&amp;J HiSoftware · Educational AI &amp; Modeling</span>
+          <ul>
+            <li>Automated ETL in Python, cutting processing time by ~50%.</li>
+            <li>Built an RNN (LPKT) in PyTorch to predict assessment outcomes; integrated with production for real-time scoring.</li>
+          </ul>
+        </div>
+      </div>
 
-### Impact & Innovation
-I don't just want to build things—I want to build things that matter. OnlySportsLM isn't just a model; it's a demonstration that specialized AI can democratize expertise and make intelligent analysis accessible to everyone.
+      <div class="timeline-item edu" data-aos="fade-left">
+        <div class="timeline-card">
+          <span class="timeline-when">2020 – 2024</span>
+          <h3>B.A., Computer &amp; Data Science</h3>
+          <span class="timeline-role">New York University</span>
+          <ul>
+            <li>Advanced ML, deep learning, causal inference, database management, and big-data processing.</li>
+            <li>Research on RNN models for educational assessment with PyTorch.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-## 📚 Academic Journey
+<section class="page-section alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-eyebrow">Toolbox</span>
+      <h2 class="section-title">Technical Arsenal</h2>
+    </div>
 
-### Cornell University (Expected Dec. 2025)
-**M.Eng. Operations Research and Information Engineering**
+    <div class="card-grid">
+      <div class="glass-card accent-blue" data-aos="fade-up">
+        <div class="card-icon"><i class="fas fa-brain"></i></div>
+        <h3>ML &amp; AI</h3>
+        <div class="chip-cloud" style="justify-content:flex-start;">
+          <span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">scikit-learn</span><span class="chip">RWKV</span><span class="chip">pandas</span><span class="chip">NumPy</span>
+        </div>
+      </div>
+      <div class="glass-card accent-purple" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon"><i class="fas fa-database"></i></div>
+        <h3>Data Engineering</h3>
+        <div class="chip-cloud" style="justify-content:flex-start;">
+          <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Azure Synapse</span><span class="chip">AWS</span><span class="chip">Hadoop</span><span class="chip">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="glass-card accent-green" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Analytics &amp; Optimization</h3>
+        <div class="chip-cloud" style="justify-content:flex-start;">
+          <span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">D3.js</span><span class="chip">Gurobi</span><span class="chip">MILP</span><span class="chip">Plotly</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-- **Focus Areas**: Simulation and Modeling Analysis, Markov Chain, Time Series Analysis, Data Mining, Optimization
-- **Key Projects**: OnlySportsLM, Production Scheduling Optimization (Niagara Bottling), Sports Analytics
-- **Research**: Sports-specific language models, efficient neural architectures, MILP optimization
+<section class="page-section aurora">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-eyebrow">By the Numbers</span>
+      <h2 class="section-title">Impact Highlights</h2>
+    </div>
 
-### New York University (Sep. 2020 - May 2024)
-**Bachelor of Arts in Computer and Data Science**
+    <div class="stats-row">
+      <div class="stat-block" data-aos="zoom-in">
+        <div class="stat-value" data-count="60" data-suffix="%">0</div>
+        <div class="stat-caption">Less analyst prep time</div>
+      </div>
+      <div class="stat-block" data-aos="zoom-in" data-aos-delay="100">
+        <div class="stat-value" data-count="50" data-suffix="%">0</div>
+        <div class="stat-caption">Faster ETL processing</div>
+      </div>
+      <div class="stat-block" data-aos="zoom-in" data-aos-delay="200">
+        <div class="stat-value" data-count="38" data-suffix="%">0</div>
+        <div class="stat-caption">Demand reduction (MILP)</div>
+      </div>
+      <div class="stat-block" data-aos="zoom-in" data-aos-delay="300">
+        <div class="stat-value" data-count="600" data-suffix="B">0</div>
+        <div class="stat-caption">Tokens curated</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-- **Advanced Coursework**: Advanced Machine Learning, Deep Learning, Causal Inference, Database Management, Big Data Processing
-- **Foundation**: Strong mathematical and computational background
-- **Research Experience**: RNN models for educational assessment, PyTorch implementations
+<section class="page-section alt">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <span class="section-eyebrow">Beyond the Code</span>
+      <h2 class="section-title">Off the Clock</h2>
+    </div>
 
-## 💼 Professional Experience
+    <div class="card-grid">
+      <div class="glass-card accent-cyan" data-aos="fade-up">
+        <div class="card-icon"><i class="fas fa-camera-retro"></i></div>
+        <h3>Adventure &amp; Photography</h3>
+        <p>From the cenotes of Mexico to the mountains of Tibet, I chase new perspectives — camera and dive gear in hand.</p>
+      </div>
+      <div class="glass-card accent-amber" data-aos="fade-up" data-aos-delay="100">
+        <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+        <h3>Gaming &amp; Strategy</h3>
+        <p>Souls-likes, roguelikes, and strategy games — complex systems that mirror real-world optimization. Currently: HELLDIVERS 2.</p>
+      </div>
+      <div class="glass-card accent-green" data-aos="fade-up" data-aos-delay="200">
+        <div class="card-icon"><i class="fas fa-basketball"></i></div>
+        <h3>Sports Analytics</h3>
+        <p>Basketball, soccer, and Olympic sports — advanced stats, tactical analysis, and predictive modeling.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-### Data Engineering Intern | Cornspring (Jun. 2025 – Aug. 2025)
-**Cloud-Native ETL & Financial Data Processing**
-
-- Designed & deployed cloud-agnostic ETL in **AWS** (S3, Lambda, Step Functions, SQS, RDS) and **Azure** (Blob, Functions) to ingest tens of millions of global equity-price, FX, fundamentals, ETF-holdings, and index records daily
-- Built high-throughput Python ingestion using **asyncio/aiohttp** with vendor APIs/SFTP, schema-drift checks, and partitioned storage
-- Engineered financial indicators (moving averages, RSI, volatility) and corporate-actions enrichment, **improving model accuracy and cutting analyst prep time by ~60%**
-- Introduced **IaC + CI/CD** and standardized PostgreSQL staging, shrinking deployments from hours to minutes
-
-### Data Management Intern | JM Family Enterprises (Jun. 2023 – Aug. 2023)
-**Enterprise Data Architecture & BI Systems**
-
-- Built **ADF pipelines** and 7 Synapse external tables/views (T-SQL + Git) to land JSON/Parquet into relational models
-- Modeled facts/dimensions and implemented a **STAR schema** enabling self-serve reporting on dealership expansion & monthly contract volume
-- Cataloged **~400 BI assets** across Cognos/Tableau/Power BI and mapped 130+ COE objects (~500 relationships)
-- Prototyped a **1,083-asset Collibra data dictionary** to improve discoverability
-
-### Data Analyst Co-op | J&J HiSoftware LLC (Sep. 2022 – Jan. 2023)
-**Educational AI & Predictive Modeling**
-
-- Automated ETL in Python to clean and standardize platform/assessment data, **cutting processing time by ~50%**
-- Built an **RNN (LPKT) in PyTorch** to predict student assessment outcomes from sequential interaction data
-- Applied **propensity score matching** to reduce selection bias and improve model accuracy and fairness
-- **Integrated the model pipeline with production servers**, enabling real-time scoring and iteration
-- Translated model insights into quiz-design recommendations, aligning stakeholders across education partners
-
-## 🛠️ Technical Arsenal
-
-### Programming & Core Technologies
-```python
-tech_stack = {
-    "Languages": ["Python", "SQL", "R", "Java"],
-    "ML/AI": ["pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "RWKV"],
-    "Optimization": ["Gurobi", "MILP"],
-    "Data Engineering": ["ETL/ELT", "STAR schema", "asyncio/aiohttp", "boto3"]
-}
-```
-
-### Cloud & Infrastructure
-- **AWS**: S3, Lambda, Step Functions, SQS, RDS, CloudWatch
-- **Azure**: ADF, Synapse, ADLS2, Functions, Blob Storage
-- **Data Formats**: Parquet, JSON
-- **DevOps**: Git, IaC, CI/CD pipelines
-
-### Data & Analytics
-- **Visualization**: Tableau, Power BI, Cognos
-- **Data Governance**: Collibra
-- **Big Data**: Hadoop ecosystem
-- **Databases**: PostgreSQL, relational modeling
-
-### Specialized Skills
-- **Optimization**: MILP modeling, production scheduling
-- **Financial Data**: Equity pricing, FX, fundamentals, ETF holdings
-- **Educational AI**: Sequential modeling, assessment prediction
-- **Sports Analytics**: Language models, domain-specific AI
-
-## 🏆 Key Achievements
-
-### Research & Publications
-- **NeurIPS 2024 ENLSP Workshop**: "OnlySportsLM: Efficient Sports-Specific Language Understanding"
-- **196M-parameter RWKV-v6 model**: Achieved **+37.6%** accuracy improvement over previous baselines
-- **600B tokens processed**: Curated and processed massive sports-specific dataset
-- **Open Source Contributions**: Published model, code, and benchmarks for community use
-
-### Industry Impact
-- **60% reduction** in analyst prep time through automated financial indicators (Cornspring)
-- **50% processing time reduction** through ETL automation (J&J HiSoftware)
-- **38% demand reduction** (1600→1000 EPQs) via MILP optimization (Niagara Bottling)
-- **Production ML deployment**: Real-time educational assessment scoring systems
-
-### Academic Excellence
-- **Cornell ORIE M.Eng.**: Specializing in optimization and data science
-- **NYU Computer & Data Science**: Strong ML and systems foundation
-- **Cross-disciplinary expertise**: Finance, education, manufacturing, and sports domains
-
-## 🌍 Beyond the Code
-
-### Adventure & Exploration
-When I'm not coding, you'll find me exploring the world with my camera and diving gear. From the cenotes of Mexico to the mountains of Tibet, I'm always seeking new perspectives—literally and figuratively.
-
-**Recent Adventures**:
-- 🏔️ **Tibetan Plateau**: High-altitude trekking and landscape photography
-- 🌊 **Cenote Diving, Mexico**: Underwater cave exploration and marine photography
-- 🏝️ **Phuket, Thailand**: Scuba diving and underwater videography
-- 🌵 **Joshua Tree, USA**: Astrophotography and desert camping
-
-### Gaming & Technology
-I'm an avid gamer who loves challenging titles that require strategic thinking:
-- **Souls-likes**: From Dark Souls to Elden Ring
-- **Roguelikes**: Risk of Rain 2, Hades, Dead Cells
-- **Strategy**: Complex systems that mirror real-world optimization problems
-- **Current obsession**: HELLDIVERS 2 - "For Super Earth!" 🚀
-
-### Sports Analytics Passion
-My love for sports goes beyond just building AI models. I'm fascinated by:
-- **Basketball analytics**: Advanced statistics and performance metrics
-- **Soccer/Football**: Tactical analysis and player evaluation
-- **Olympic sports**: Performance optimization and training science
-- **Fantasy sports**: Predictive modeling and strategy optimization
-
-## 🔮 Future Vision
-
-### Short-term Goals (2024-2025)
-- Complete Cornell M.Eng. with distinction
-- Expand OnlySportsLM to multiple sports and languages
-- Secure full-time position at leading tech company
-- Contribute to open-source ML community
-
-### Long-term Aspirations (2025-2030)
-- Lead ML engineering teams building next-generation AI systems
-- Establish research lab focused on efficient, specialized AI models
-- Mentor upcoming ML engineers and data scientists
-- Build AI systems that democratize expertise across domains
-
-### Dream Projects
-- **AI-Powered Sports Coaching**: Real-time tactical analysis for teams
-- **Multimodal Sports Understanding**: Combining video, text, and statistics
-- **Efficient AI for Everyone**: Making powerful AI accessible on mobile devices
-- **Cross-Cultural Data Science**: Building AI that understands global perspectives
-
-## 🤝 Let's Connect
-
-I'm always excited to connect with fellow technologists, researchers, and anyone passionate about using data and AI to solve interesting problems.
-
-### What I Can Help With
-- **ML System Design**: Architecture advice for specialized AI applications
-- **Research Collaboration**: Academic projects and paper development
-- **Technical Mentoring**: Guidance for students and early-career professionals
-- **Speaking Engagements**: Tech talks, conference presentations, workshops
-
-### What I'm Looking For
-- **Collaboration Opportunities**: Innovative ML research and applications
-- **Industry Insights**: Trends in AI/ML that shape the future
-- **Creative Projects**: Unconventional applications of data science
-- **Mentorship**: Learning from experienced tech leaders
-
----
-
-<div style="text-align: center; margin: 3rem 0; padding: 2rem; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 1rem; color: white;">
-  <h3>Ready to Build Something Amazing Together?</h3>
-  <p>Whether you want to discuss the latest in AI research, collaborate on a groundbreaking project, or just chat about the intersection of technology and adventure, I'd love to hear from you!</p>
-  <a href="/contact" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 2rem; background: white; color: #3b82f6; text-decoration: none; border-radius: 0.5rem; font-weight: 600;">Get In Touch →</a>
-</div>
-
-*"The journey of a thousand miles begins with a single step. In tech, that step is usually debugging your first Hello World program."* 😄
+<section class="page-section aurora">
+  <div class="container">
+    <div class="banner-cta" data-aos="zoom-in">
+      <h2>Ready to Build Something Amazing?</h2>
+      <p>Let's talk AI research, a groundbreaking project, or the intersection of tech and adventure.</p>
+      <a href="/contact" class="btn-solid"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+{
+  "name": "Sean Xie Portfolio (Jekyll)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "install": "bundle install",
+  "terminals": [
+    {
+      "name": "jekyll",
+      "command": "bundle exec jekyll serve --host 0.0.0.0 --port 4000 --livereload",
+      "description": "Jekyll dev server with live reload, serving the site at http://localhost:4000/"
+    }
+  ],
+  "ports": [
+    {
+      "name": "jekyll",
+      "port": 4000
+    }
+  ]
+}
